@@ -32,6 +32,13 @@ export const siteConfig: SiteConfig = {
       category: "Artificial Intelligence",
     },
     {
+      slug: "ontology",
+      title: "Ontologies",
+      description:
+        "Build IT ontologies step by step — incidents, services, policies — for RAG and knowledge graphs.",
+      category: "Artificial Intelligence",
+    },
+    {
       slug: "transformer",
       title: "Transformer Architecture",
       description: "Understand Self-Attention, Multi-Head Attention, and Encoder-Decoder blocks visually.",

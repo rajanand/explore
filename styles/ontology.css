@@ -1,0 +1,411 @@
+/* Ontology topic */
+
+.walkthrough-root .ont-section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+
+.walkthrough-root .ont-definition-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.walkthrough-root .ont-definition-card {
+  padding: 14px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-head-card-bg);
+}
+
+.walkthrough-root .ont-definition-card h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+
+.walkthrough-root .ont-definition-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
+.walkthrough-root .ont-formula-wide {
+  margin-top: 4px;
+}
+
+.walkthrough-root .ont-tree {
+  padding: 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-tok-bg);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.walkthrough-root .ont-tree-node .mono {
+  color: var(--ink);
+}
+
+.walkthrough-root .ont-cross-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .ont-cross-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 18px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-head-card-bg);
+  min-width: 120px;
+}
+
+.walkthrough-root .ont-cross-meta {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .ont-cross-rel {
+  font-size: 12px;
+  color: var(--amber);
+  padding: 8px 12px;
+  border: 1px dashed var(--amber);
+  border-radius: 999px;
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .ont-rel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.walkthrough-root .ont-rel-list li {
+  padding: 10px 12px;
+  background: var(--walk-tok-bg);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .ont-rel-name {
+  color: var(--teal);
+}
+
+.walkthrough-root .ont-block-detail h4 {
+  margin: 0 0 12px;
+}
+
+.walkthrough-root .ont-block-detail p {
+  color: var(--ink-dim);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+
+.walkthrough-root .ont-triple-demo {
+  margin-top: 16px;
+}
+
+.walkthrough-root .ont-triple-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.walkthrough-root .ont-triple-cell {
+  padding: 12px;
+  border-radius: 8px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  text-align: center;
+}
+
+.walkthrough-root .ont-triple-cell.subject {
+  background: var(--walk-tok-focus-bg);
+  border: 1px solid color-mix(in srgb, var(--amber) 40%, var(--line-soft));
+  color: var(--amber);
+}
+
+.walkthrough-root .ont-triple-cell.predicate {
+  background: var(--walk-tok-target-bg);
+  border: 1px solid color-mix(in srgb, var(--teal) 40%, var(--line-soft));
+  color: var(--teal);
+}
+
+.walkthrough-root .ont-triple-cell.object {
+  background: var(--walk-head-card-bg);
+  border: 1px solid var(--line-soft);
+  color: var(--ink);
+}
+
+.walkthrough-root .ont-graph-panel {
+  padding: 16px;
+}
+
+.walkthrough-root .ont-graph-svg {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.walkthrough-root .ont-graph-edge {
+  stroke: var(--line);
+  stroke-width: 1.5;
+  opacity: 0.35;
+}
+
+.walkthrough-root .ont-graph-edge.isa {
+  stroke-dasharray: 4 3;
+}
+
+.walkthrough-root .ont-graph-edge.active {
+  stroke: var(--teal);
+  opacity: 0.9;
+  stroke-width: 2;
+}
+
+.walkthrough-root .ont-edge-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 9px;
+  fill: var(--amber);
+}
+
+.walkthrough-root .ont-graph-node {
+  cursor: pointer;
+}
+
+.walkthrough-root .ont-graph-node.dim {
+  opacity: 0.35;
+}
+
+.walkthrough-root .ont-graph-circle {
+  fill: var(--walk-tok-bg);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.walkthrough-root .ont-graph-node.class .ont-graph-circle {
+  stroke: var(--amber);
+  fill: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .ont-graph-node.instance .ont-graph-circle {
+  stroke: var(--teal);
+  fill: var(--walk-tok-target-bg);
+}
+
+.walkthrough-root .ont-graph-node.selected .ont-graph-circle {
+  stroke-width: 2.5;
+  stroke: var(--amber);
+}
+
+.walkthrough-root .ont-graph-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--ink);
+  pointer-events: none;
+}
+
+.walkthrough-root .ont-node-detail {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line-soft);
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
+.walkthrough-root .ont-type-badge {
+  font-size: 11px;
+  color: var(--teal);
+  background: var(--walk-tok-target-bg);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.walkthrough-root .ont-edge-list {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .ont-ai-card h4 {
+  margin: 0 0 10px;
+}
+
+.walkthrough-root .ont-ai-card p {
+  margin: 0 0 12px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+
+.walkthrough-root .ont-ai-example {
+  display: block;
+  padding: 12px;
+  background: var(--walk-tok-bg);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--teal);
+}
+
+.walkthrough-root .ont-stack-diagram {
+  margin-top: 16px;
+}
+
+.walkthrough-root .ont-stack-layers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.walkthrough-root .ont-stack-layer {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-head-card-bg);
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .ont-stack-layer.highlight-teal {
+  border-color: var(--teal);
+  background: var(--walk-tok-target-bg);
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.walkthrough-root .ont-stack-layer.highlight-amber {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .ont-stack-arrow {
+  color: var(--ink-dim);
+  font-size: 12px;
+}
+
+.walkthrough-root .ont-practice-card p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
+.walkthrough-root .ont-checklist {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.walkthrough-root .ont-scenario-panel {
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .ont-scenario-text {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.walkthrough-root .ont-scenario-callout {
+  padding: 12px 14px;
+  margin: 12px 0;
+  border-left: 3px solid var(--amber);
+  background: var(--walk-tok-focus-bg);
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.55;
+}
+
+.walkthrough-root .ont-create-controls {
+  flex-wrap: wrap;
+}
+
+.walkthrough-root .ont-create-panel h4 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.walkthrough-root .ont-create-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.walkthrough-root .ont-create-who {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .ont-create-progress {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .ont-create-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--line-soft);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.walkthrough-root .ont-create-dot.done {
+  background: var(--line);
+}
+
+.walkthrough-root .ont-create-dot.current {
+  background: var(--amber);
+  transform: scale(1.25);
+}
+
+.walkthrough-root .ont-create-action,
+.walkthrough-root .ont-create-output {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+
+.walkthrough-root .ont-create-artifact pre {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  background: var(--walk-tok-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 0;
+  white-space: pre-wrap;
+  color: var(--ink);
+}
