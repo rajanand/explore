@@ -1,0 +1,508 @@
+/* RAG topic — extends walkthrough-root + llm-intro patterns */
+
+.walkthrough-root .rag-query-line {
+  color: var(--ink);
+  margin: 0 0 14px;
+  font-size: 14px;
+}
+
+.walkthrough-root .rag-section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  margin: 0 0 12px;
+}
+
+.walkthrough-root .rag-answer-box {
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+  margin-top: 12px;
+}
+
+.walkthrough-root .rag-answer-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 8px;
+}
+
+.walkthrough-root .rag-answer-warn {
+  background: color-mix(in srgb, var(--rose) 8%, var(--walk-head-card-bg));
+  border-color: color-mix(in srgb, var(--rose) 35%, var(--line-soft));
+}
+
+.walkthrough-root .rag-answer-warn .rag-answer-label {
+  color: var(--rose);
+}
+
+.walkthrough-root .rag-answer-good {
+  background: color-mix(in srgb, var(--teal) 10%, var(--walk-head-card-bg));
+  border-color: color-mix(in srgb, var(--teal) 35%, var(--line-soft));
+}
+
+.walkthrough-root .rag-answer-good .rag-answer-label {
+  color: var(--teal);
+}
+
+.walkthrough-root .rag-pipeline-viz {
+  padding: 20px;
+}
+
+.walkthrough-root .rag-pipeline-flow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .rag-pipeline-node {
+  padding: 10px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  background: var(--walk-tok-bg);
+}
+
+.walkthrough-root .rag-pipeline-node.done {
+  border-color: var(--line);
+}
+
+.walkthrough-root .rag-pipeline-node.current {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+  color: var(--amber);
+}
+
+.walkthrough-root .rag-pipeline-detail {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.walkthrough-root .rag-index-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .rag-chunk-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.walkthrough-root .rag-chunk-card {
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-head-card-bg);
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.walkthrough-root .rag-chunk-card p:last-child {
+  margin: 0;
+}
+
+.walkthrough-root .rag-chunk-meta {
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin: 0 0 8px;
+  display: block;
+}
+
+.walkthrough-root .rag-embed-badge {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--teal);
+}
+
+.walkthrough-root .rag-retrieval-results {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.walkthrough-root .rag-retrieval-row {
+  display: grid;
+  grid-template-columns: 120px 48px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+@media (max-width: 640px) {
+  .walkthrough-root .rag-retrieval-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.walkthrough-root .rag-score-bar {
+  height: 8px;
+  background: var(--line-soft);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.walkthrough-root .rag-score-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.walkthrough-root .rag-score-pct {
+  font-size: 12px;
+  color: var(--teal);
+  text-align: right;
+}
+
+.walkthrough-root .rag-retrieval-text p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.walkthrough-root .rag-chunking-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.walkthrough-root .rag-pitfall-card h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.walkthrough-root .rag-pitfall-card p {
+  margin: 0 0 12px;
+  color: var(--ink-dim);
+  line-height: 1.6;
+}
+
+.walkthrough-root .rag-pitfall-fix {
+  font-size: 13px;
+  color: var(--teal);
+  margin: 0;
+  padding: 10px 12px;
+  background: var(--walk-tok-target-bg);
+  border-radius: 6px;
+}
+
+/* Data flow diagrams */
+
+.walkthrough-root .rag-flow-panel {
+  padding: 20px;
+}
+
+.walkthrough-root .rag-flow-canvas {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.walkthrough-root .rag-flow-phase-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+  margin: 0;
+}
+
+.walkthrough-root .rag-flow-phase-offline {
+  color: var(--amber);
+}
+
+.walkthrough-root .rag-flow-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  justify-content: center;
+}
+
+.walkthrough-root .rag-flow-row-compact .rag-flow-node {
+  min-width: 100px;
+  max-width: 130px;
+  padding: 10px 8px;
+  font-size: 12px;
+}
+
+.walkthrough-root .rag-flow-node {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line-soft);
+  background: var(--walk-head-card-bg);
+  min-width: 110px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.35;
+}
+
+.walkthrough-root .rag-flow-node .mono {
+  color: var(--ink);
+  font-weight: 500;
+  font-size: 12px;
+}
+
+.walkthrough-root .rag-flow-node-user {
+  border-color: color-mix(in srgb, var(--amber) 45%, var(--line-soft));
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .rag-flow-node-llm {
+  border-color: color-mix(in srgb, var(--amber) 55%, var(--line-soft));
+}
+
+.walkthrough-root .rag-flow-node-docs {
+  border-color: color-mix(in srgb, var(--line) 60%, var(--line-soft));
+  border-style: dashed;
+}
+
+.walkthrough-root .rag-flow-node-store {
+  border-color: var(--teal);
+  background: var(--walk-tok-target-bg);
+}
+
+.walkthrough-root .rag-flow-node-warn {
+  border-color: color-mix(in srgb, var(--rose) 45%, var(--line-soft));
+  background: color-mix(in srgb, var(--rose) 8%, var(--walk-head-card-bg));
+}
+
+.walkthrough-root .rag-flow-node-good {
+  border-color: var(--teal);
+  background: var(--walk-tok-target-bg);
+}
+
+.walkthrough-root .rag-flow-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 28px;
+}
+
+.walkthrough-root .rag-flow-arrow-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+}
+
+.walkthrough-root .rag-flow-arrow-line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: -4px;
+  border: 5px solid transparent;
+  border-left-color: var(--line);
+}
+
+.walkthrough-root .rag-flow-arrow-label {
+  font-size: 9px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+}
+
+.walkthrough-root .rag-flow-isolated {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 8px;
+  padding: 16px;
+  border: 1px dashed var(--line-soft);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--rose) 5%, transparent);
+}
+
+.walkthrough-root .rag-flow-broken-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--rose);
+}
+
+.walkthrough-root .rag-flow-broken-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.walkthrough-root .rag-flow-caption {
+  text-align: center;
+  margin: 4px 0 0;
+}
+
+.walkthrough-root .rag-flow-gap-diagram {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .walkthrough-root .rag-flow-gap-diagram {
+    grid-template-columns: 1fr;
+  }
+}
+
+.walkthrough-root .rag-flow-gap-middle {
+  display: flex;
+  justify-content: center;
+}
+
+.walkthrough-root .rag-flow-gap-bridge {
+  text-align: center;
+  padding: 16px 20px;
+  border: 2px dashed var(--rose);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--rose) 8%, var(--walk-head-card-bg));
+  min-width: 140px;
+}
+
+.walkthrough-root .rag-flow-gap-bridge .mono {
+  color: var(--rose);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.walkthrough-root .rag-flow-gap-bridge p {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .rag-gap-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.walkthrough-root .rag-gap-list li {
+  padding: 12px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-tok-bg);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.walkthrough-root .rag-gap-list strong {
+  display: block;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.walkthrough-root .rag-gap-list span {
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .rag-flow-lane {
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--walk-tok-bg);
+}
+
+.walkthrough-root .rag-flow-lane-divider {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-dim);
+  padding: 4px 0;
+}
+
+.walkthrough-root .rag-compare-panel {
+  margin-top: 16px;
+}
+
+.walkthrough-root .rag-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.walkthrough-root .rag-compare-meta {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--ink-dim);
+  font-style: italic;
+}
+
+.walkthrough-root .rag-phase-tag {
+  font-size: 10px;
+  margin-left: 6px;
+  opacity: 0.75;
+}
+
+.walkthrough-root .rag-pipeline-track-diagram {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .rag-pipeline-track-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.walkthrough-root .rag-pipeline-track-label.offline {
+  color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .rag-pipeline-track-label.online {
+  color: var(--teal);
+  background: var(--walk-tok-target-bg);
+}
+
+.walkthrough-root .rag-pipeline-track-step {
+  padding: 8px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  background: var(--walk-tok-bg);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.walkthrough-root .rag-pipeline-track-step.done {
+  border-color: var(--line);
+}
+
+.walkthrough-root .rag-pipeline-track-step.active {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+  color: var(--amber);
+}
+
+.walkthrough-root .rag-pipeline-track-spacer {
+  width: 24px;
+  height: 2px;
+  background: var(--line-soft);
+}

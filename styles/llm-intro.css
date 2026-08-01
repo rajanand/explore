@@ -1,0 +1,405 @@
+/* LLM intro topic — extends walkthrough-root */
+
+.walkthrough-root .sidebar-part {
+  margin-bottom: 16px;
+}
+
+.walkthrough-root .sidebar-part-title {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin: 0 0 8px 4px;
+}
+
+.walkthrough-root .llm-two-files {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.walkthrough-root .llm-file-card {
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line-soft);
+  background: var(--walk-head-card-bg);
+}
+
+.walkthrough-root .llm-file-card h4 {
+  margin: 8px 0 4px;
+  font-size: 15px;
+}
+
+.walkthrough-root .llm-file-icon {
+  font-size: 12px;
+  color: var(--teal);
+  margin: 0;
+}
+
+.walkthrough-root .llm-file-stat {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 8px 0;
+}
+
+.walkthrough-root .llm-file-desc {
+  font-size: 14px;
+  color: var(--ink-dim);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.walkthrough-root .llm-file-weights {
+  border-color: color-mix(in srgb, var(--teal) 40%, var(--line-soft));
+}
+
+.walkthrough-root .llm-file-code {
+  border-color: color-mix(in srgb, var(--amber) 40%, var(--line-soft));
+}
+
+.walkthrough-root .llm-infra-compare {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.walkthrough-root .llm-infra-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  gap: 12px;
+  align-items: center;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .walkthrough-root .llm-infra-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
+.walkthrough-root .llm-infra-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  color: var(--ink-dim);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.walkthrough-root .llm-infra-value {
+  font-weight: 600;
+}
+
+.walkthrough-root .llm-infra-value.teal {
+  color: var(--teal);
+}
+
+.walkthrough-root .llm-infra-value.amber {
+  color: var(--amber);
+}
+
+.walkthrough-root .llm-infra-hint {
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+.walkthrough-root .llm-compression-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.walkthrough-root .llm-compression-stage {
+  width: 100%;
+}
+
+.walkthrough-root .llm-compression-label {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin: 0 0 8px;
+}
+
+.walkthrough-root .llm-compression-bar {
+  padding: 14px 18px;
+  border-radius: 8px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+  text-align: center;
+}
+
+.walkthrough-root .llm-compression-input {
+  background: color-mix(in srgb, var(--teal) 15%, var(--walk-tok-bg));
+  border: 1px solid var(--teal);
+  color: var(--teal);
+}
+
+.walkthrough-root .llm-compression-output {
+  background: color-mix(in srgb, var(--amber) 12%, var(--walk-tok-bg));
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  max-width: 45%;
+  margin: 0 auto;
+}
+
+.walkthrough-root .llm-compression-arrow {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .llm-cost-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.walkthrough-root .llm-cost-card {
+  padding: 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  background: var(--walk-head-card-bg);
+}
+
+.walkthrough-root .llm-cost-card h4 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.walkthrough-root .llm-cost-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.walkthrough-root .llm-pipeline-panel {
+  padding: 20px;
+}
+
+.walkthrough-root .llm-pipeline-track {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.walkthrough-root .llm-pipeline-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  padding: 8px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  background: var(--walk-tok-bg);
+}
+
+.walkthrough-root .llm-pipeline-step.done {
+  border-color: var(--line);
+}
+
+.walkthrough-root .llm-pipeline-step.current {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+  color: var(--amber);
+}
+
+.walkthrough-root .llm-pipeline-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.walkthrough-root .llm-pipeline-step.current .llm-pipeline-dot {
+  background: var(--amber);
+}
+
+.walkthrough-root .llm-pipeline-step.done .llm-pipeline-dot {
+  background: var(--teal);
+}
+
+.walkthrough-root .llm-stage-output {
+  border-top: 1px dashed var(--line-soft);
+  padding-top: 16px;
+}
+
+.walkthrough-root .llm-stage-badge {
+  font-size: 12px;
+  color: var(--teal);
+  margin: 0 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.walkthrough-root .llm-stage-example {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.55;
+  background: var(--walk-tok-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  color: var(--ink);
+  overflow-x: auto;
+}
+
+.walkthrough-root .llm-scaling-panel {
+  padding: 16px;
+}
+
+.walkthrough-root .llm-scaling-chart {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.walkthrough-root .llm-scale-dot {
+  fill: var(--walk-tok-bg);
+  stroke: var(--teal);
+  stroke-width: 2;
+  cursor: pointer;
+}
+
+.walkthrough-root .llm-scale-dot.active {
+  fill: var(--walk-tok-target-bg);
+  stroke: var(--amber);
+}
+
+.walkthrough-root .llm-scale-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--ink-dim);
+}
+
+.walkthrough-root .llm-scale-detail {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.walkthrough-root .llm-scaling-note {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.walkthrough-root .llm-os-diagram {
+  display: grid;
+  gap: 20px;
+}
+
+.walkthrough-root .llm-os-center {
+  text-align: center;
+  padding: 20px;
+  border: 2px solid var(--amber);
+  border-radius: var(--radius);
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .llm-os-kernel {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--amber);
+}
+
+.walkthrough-root .llm-os-tools {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.walkthrough-root .llm-os-tool {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-head-card-bg);
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  color: var(--ink-dim);
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.walkthrough-root .llm-os-tool span:first-child {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.walkthrough-root .llm-os-tool.active {
+  border-color: var(--teal);
+  background: var(--walk-tok-target-bg);
+}
+
+.walkthrough-root .llm-os-tool:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.walkthrough-root .llm-os-steps {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.walkthrough-root .llm-system-block {
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid var(--line-soft);
+  background: var(--walk-head-card-bg);
+}
+
+.walkthrough-root .llm-system-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+
+.walkthrough-root .llm-system-label.amber {
+  color: var(--amber);
+}
+
+.walkthrough-root .llm-system-label.teal {
+  color: var(--teal);
+}
+
+.walkthrough-root .llm-toggle-btn {
+  margin-bottom: 14px;
+}
+
+.walkthrough-root .llm-poison-compare {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.walkthrough-root .llm-poison-col {
+  padding: 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--walk-tok-bg);
+  font-size: 14px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.walkthrough-root .llm-poison-col p:first-child {
+  margin: 0 0 8px;
+  color: var(--ink);
+}

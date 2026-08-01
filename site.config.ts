@@ -18,10 +18,24 @@ export const siteConfig: SiteConfig = {
   googleAnalyticsId: process.env.NEXT_PUBLIC_GA_ID || "",
   topics: [
     {
+      slug: "llm-intro",
+      title: "Introduction to LLMs",
+      description:
+        "Karpathy-style overview: weights, training, fine-tuning, scaling, LLM OS, and security for engineers.",
+      category: "Artificial Intelligence",
+    },
+    {
+      slug: "rag",
+      title: "RAG",
+      description:
+        "Retrieve, augment, generate: interactive pipeline from indexing to grounded answers on internal docs.",
+      category: "Artificial Intelligence",
+    },
+    {
       slug: "transformer",
       title: "Transformer Architecture",
       description: "Understand Self-Attention, Multi-Head Attention, and Encoder-Decoder blocks visually.",
       category: "Artificial Intelligence",
-    }
-  ]
+    },
+  ],
 };
