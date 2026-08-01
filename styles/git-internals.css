@@ -592,7 +592,204 @@
   color: var(--ink-dim);
 }
 
-/* Intro animation */
+/* Init + objects folder */
+.git-init-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .git-init-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.git-objects-folder {
+  min-height: 120px;
+}
+
+.git-objects-folder-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.git-objects-empty,
+.git-objects-static {
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.git-objects-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.git-objects-entry {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  font-size: 13px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.git-objects-entry--new {
+  color: var(--git-rust);
+}
+
+.git-objects-entry--reused {
+  color: var(--git-forest);
+}
+
+.git-objects-dir {
+  color: var(--git-cobalt);
+}
+
+.git-objects-type {
+  margin-left: auto;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-dim);
+}
+
+.git-objects-note {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+/* cat-file panel */
+.git-catfile-cmd {
+  font-size: 13px;
+  color: var(--git-rust);
+  margin: 0 0 12px;
+}
+
+.git-catfile-out {
+  margin: 0;
+  padding: 14px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.git-catfile-type {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--ink-dim);
+}
+
+/* Hash demo */
+.git-hash-input {
+  font-size: 15px;
+  margin: 0 0 12px;
+  padding: 10px 12px;
+  background: var(--bg);
+  border-radius: 6px;
+}
+
+.git-hash-result {
+  margin-top: 14px;
+}
+
+/* Snapshot diagrams */
+.git-snapshot {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+  padding: 16px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--git-cobalt) 4%, var(--panel));
+}
+
+.git-snapshot-link {
+  font-size: 12px;
+  color: var(--ink-dim);
+  padding-left: 12px;
+}
+
+.git-snapshot-branch {
+  padding-left: 8px;
+}
+
+.git-snapshot-sub {
+  padding-left: 16px;
+  margin-top: 8px;
+}
+
+.git-snapshot-count {
+  margin: 12px 0 0;
+  font-size: 13px;
+  color: var(--git-forest);
+}
+
+.git-snapshot--refs {
+  gap: 16px;
+}
+
+.git-ref-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.git-snapshot-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.git-snapshot-chain .git-object-card {
+  width: auto;
+  min-width: 180px;
+}
+
+/* Recap */
+.git-stage--recap .git-recap-list {
+  margin: 0 0 24px;
+  padding-left: 0;
+  list-style: none;
+  max-width: 52ch;
+}
+
+.git-recap-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line-soft);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.git-recap-num {
+  color: var(--git-rust);
+  margin-right: 8px;
+}
+
+.git-recap-takeaways h3 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+
+.git-recap-takeaways ul {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .git-stage--intro .git-workspace {
     animation: git-fade-in 0.6s ease both;

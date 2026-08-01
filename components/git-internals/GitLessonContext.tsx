@@ -11,18 +11,18 @@ import {
   INITIAL_SIM,
   isStageComplete,
   maxUnlockedStage,
-  type LessonStage,
+  STAGE_COUNT,
   type SimState,
 } from "@/lib/git-internals/simulation";
 
 type GitLessonContextValue = {
-  stage: LessonStage;
+  stage: number;
   sim: SimState;
-  setStage: (s: LessonStage) => void;
+  setStage: (s: number) => void;
   updateSim: (patch: Partial<SimState>) => void;
   resetLesson: () => void;
-  stageComplete: (s: LessonStage) => boolean;
-  canAccessStage: (s: LessonStage) => boolean;
+  stageComplete: (s: number) => boolean;
+  canAccessStage: (s: number) => boolean;
   goNext: () => void;
   goPrev: () => void;
 };
@@ -30,7 +30,7 @@ type GitLessonContextValue = {
 const GitLessonContext = createContext<GitLessonContextValue | null>(null);
 
 export function GitLessonProvider({ children }: { children: React.ReactNode }) {
-  const [stage, setStage] = useState<LessonStage>(0);
+  const [stage, setStage] = useState(0);
   const [sim, setSim] = useState<SimState>(INITIAL_SIM);
 
   const updateSim = useCallback((patch: Partial<SimState>) => {
@@ -43,40 +43,42 @@ export function GitLessonProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const stageComplete = useCallback(
-    (s: LessonStage) => isStageComplete(s, sim),
+    (s: number) => isStageComplete(s, sim),
     [sim]
   );
 
   const unlocked = useMemo(() => maxUnlockedStage(sim), [sim]);
 
   const canAccessStage = useCallback(
-    (s: LessonStage) => s <= unlocked || stageComplete(s),
+    (s: number) => s <= unlocked || stageComplete(s),
     [unlocked, stageComplete]
   );
 
   const goNext = useCallback(() => {
     if (!isStageComplete(stage, sim)) return;
-    setStage((s) => Math.min(6, s + 1) as LessonStage);
+    setStage((s) => Math.min(STAGE_COUNT - 1, s + 1));
   }, [stage, sim]);
 
   const goPrev = useCallback(() => {
-    setStage((s) => Math.max(0, s - 1) as LessonStage);
+    setStage((s) => Math.max(0, s - 1));
   }, []);
 
-  const value: GitLessonContextValue = {
-    stage,
-    sim,
-    setStage,
-    updateSim,
-    resetLesson,
-    stageComplete,
-    canAccessStage,
-    goNext,
-    goPrev,
-  };
-
   return (
-    <GitLessonContext.Provider value={value}>{children}</GitLessonContext.Provider>
+    <GitLessonContext.Provider
+      value={{
+        stage,
+        sim,
+        setStage,
+        updateSim,
+        resetLesson,
+        stageComplete,
+        canAccessStage,
+        goNext,
+        goPrev,
+      }}
+    >
+      {children}
+    </GitLessonContext.Provider>
   );
 }
 

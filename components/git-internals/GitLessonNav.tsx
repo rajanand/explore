@@ -2,11 +2,12 @@
 
 import React from "react";
 import { useGitLesson } from "@/components/git-internals/GitLessonContext";
-import { STAGE_LABELS } from "@/lib/git-internals/simulation";
+import { STAGE_COUNT, STAGE_LABELS } from "@/lib/git-internals/simulation";
 
 export default function GitLessonNav() {
   const { stage, goNext, goPrev, stageComplete, resetLesson } = useGitLesson();
   const done = stageComplete(stage);
+  const lastStage = STAGE_COUNT - 1;
 
   return (
     <div className="git-lesson-nav">
@@ -22,14 +23,14 @@ export default function GitLessonNav() {
         type="button"
         className="btn"
         onClick={goNext}
-        disabled={stage >= 6 || !done}
+        disabled={stage >= lastStage || !done}
       >
-        {stage >= 6 ? "Finished" : "Next"}
+        {stage >= lastStage ? "Finished" : "Next"}
       </button>
       <button type="button" className="btn git-reset-btn" onClick={resetLesson}>
         Reset lesson
       </button>
-      {!done && stage < 6 && (
+      {!done && stage < lastStage && (
         <p className="git-nav-hint">Complete the interaction above to continue.</p>
       )}
     </div>

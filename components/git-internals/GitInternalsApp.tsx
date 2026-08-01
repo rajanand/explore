@@ -5,25 +5,37 @@ import { GitLessonProvider, useGitLesson } from "@/components/git-internals/GitL
 import GitSidebar from "@/components/git-internals/GitSidebar";
 import GitLessonNav, { GitProgressBar } from "@/components/git-internals/GitLessonNav";
 import { STAGE_LABELS } from "@/lib/git-internals/simulation";
-import Stage1ContentTracker from "@/components/git-internals/stages/Stage1ContentTracker";
-import Stage2ThreePlaces from "@/components/git-internals/stages/Stage2ThreePlaces";
-import Stage3Objects from "@/components/git-internals/stages/Stage3Objects";
-import Stage4SecondCommit from "@/components/git-internals/stages/Stage4SecondCommit";
-import Stage5History from "@/components/git-internals/stages/Stage5History";
-import Stage6Refs from "@/components/git-internals/stages/Stage6Refs";
-import StageRecap from "@/components/git-internals/stages/StageRecap";
+import Stage01Tracker from "@/components/git-internals/stages/Stage01Tracker";
+import Stage02Hash from "@/components/git-internals/stages/Stage02Hash";
+import Stage03Init from "@/components/git-internals/stages/Stage03Init";
+import Stage04Workflow from "@/components/git-internals/stages/Stage04Workflow";
+import Stage05ThreeObjects from "@/components/git-internals/stages/Stage05ThreeObjects";
+import Stage06Commit from "@/components/git-internals/stages/Stage06Commit";
+import Stage07Tree from "@/components/git-internals/stages/Stage07Tree";
+import Stage08Blob from "@/components/git-internals/stages/Stage08Blob";
+import Stage09SecondCommit from "@/components/git-internals/stages/Stage09SecondCommit";
+import Stage10Dedup from "@/components/git-internals/stages/Stage10Dedup";
+import Stage11Branches from "@/components/git-internals/stages/Stage11Branches";
+import Stage12Tags from "@/components/git-internals/stages/Stage12Tags";
+import Stage13Recap from "@/components/git-internals/stages/Stage13Recap";
 
 function GitLessonMain() {
   const { stage } = useGitLesson();
 
   const stages = [
-    Stage1ContentTracker,
-    Stage2ThreePlaces,
-    Stage3Objects,
-    Stage4SecondCommit,
-    Stage5History,
-    Stage6Refs,
-    StageRecap,
+    Stage01Tracker,
+    Stage02Hash,
+    Stage03Init,
+    Stage04Workflow,
+    Stage05ThreeObjects,
+    Stage06Commit,
+    Stage07Tree,
+    Stage08Blob,
+    Stage09SecondCommit,
+    Stage10Dedup,
+    Stage11Branches,
+    Stage12Tags,
+    Stage13Recap,
   ];
 
   const StageComponent = stages[stage];
@@ -40,16 +52,15 @@ function GitLessonMain() {
             <em>seen from the inside</em>
           </h1>
           <p className="lede">
-            You know <span className="mono">add</span>,{" "}
-            <span className="mono">commit</span>, and{" "}
-            <span className="mono">push</span>. This lesson opens the filing
-            cabinet — one small idea at a time.
+            Follow the Octobot walkthrough: content hashes, objects in{" "}
+            <span className="mono">.git/objects</span>, then branches and tags as
+            simple pointers — one step at a time.
           </p>
         </section>
 
         <section className="step git-lesson-step">
           <p className="eyebrow">
-            Stage {stage + 1} of {STAGE_LABELS.length}
+            Step {stage + 1} of {STAGE_LABELS.length}
           </p>
           <h2 className="title">{STAGE_LABELS[stage]}</h2>
           <StageComponent />

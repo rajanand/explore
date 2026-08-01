@@ -130,7 +130,7 @@ export function CommitCard({
           ? `parent → ${commit.parentShorts.join(", ")}`
           : "initial commit"
       }
-      detail={`tree ${commit.treeShort} · ${commit.author} · ${commit.timestamp}`}
+      detail={`tree ${commit.treeShort} · ${commit.author} · ${commit.date}`}
       variant={active ? "active" : variant}
       onClick={onClick}
     />

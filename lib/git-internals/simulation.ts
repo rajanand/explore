@@ -1,192 +1,195 @@
 export const CONTENT_RODRIGO = "Rodrigo";
 
+/** Abbreviated IDs — full hashes shown on demand in UI */
 export const IDS = {
-  blob1: "b1eae4",
-  tree1: "t1a2f3",
-  tree2: "t2b8c1",
-  tree3: "t3d4e5",
-  commit1: "c1f7a2",
-  commit2: "c2e9b3",
-  commit3: "c3a1d8",
+  blob1: "76871a",
+  tree1: "490296",
+  tree2: "a3f812",
+  tree3: "c8e441",
+  commit1: "54725f",
+  commit2: "8b2d91",
+  commit3: "f1ac03",
 } as const;
-
-export type ObjectKind = "blob" | "tree" | "commit" | "ref";
 
 export type GitBlob = {
   kind: "blob";
-  id: string;
   shortId: string;
+  fullId: string;
   content: string;
 };
 
 export type GitTreeEntry = {
   name: string;
   mode: string;
-  targetId: string;
-  targetKind: "blob" | "tree";
   targetShort: string;
+  targetKind: "blob" | "tree";
 };
 
 export type GitTree = {
   kind: "tree";
-  id: string;
   shortId: string;
+  fullId: string;
   label: string;
   entries: GitTreeEntry[];
 };
 
 export type GitCommit = {
   kind: "commit";
-  id: string;
   shortId: string;
+  fullId: string;
   message: string;
-  parentIds: string[];
   parentShorts: string[];
-  treeId: string;
   treeShort: string;
   author: string;
-  timestamp: string;
+  date: string;
 };
 
-export type GitRef = {
-  kind: "ref";
-  name: string;
-  targetShort: string;
-  refType: "branch" | "head" | "tag";
-  movable: boolean;
-};
-
-export type LessonStage = 0 | 1 | 2 | 3 | 4 | 5 | 6;
+export type LessonStage = number;
 
 export type SimState = {
-  membersContent: string;
-  tracked: boolean;
-  dedupCorrect: boolean;
+  // Stage 0 — content tracker
+  trackerQuizCorrect: boolean;
 
+  // Stage 1 — hash keys
+  hashDemoRun: boolean;
+  hashSameTwiceSeen: boolean;
+
+  // Stage 2 — git init
+  repoInitialized: boolean;
+
+  // Stage 3 — workflow
   workingContent: string;
   staged: boolean;
-  committedStage2: boolean;
+  firstCommitDone: boolean;
   stagingQuizCorrect: boolean;
 
-  blobRevealed: boolean;
-  treeRevealed: boolean;
-  commitRevealed: boolean;
+  // Stage 4 — objects folder after first commit
+  objectsFolderOpened: boolean;
 
-  tasksContent: string;
-  c2Created: boolean;
-  compareSnapshots: boolean;
+  // Stage 5–7 — object types inspected
+  commitInspected: boolean;
+  treeInspected: boolean;
+  blobInspected: boolean;
+  blobNameNoteRead: boolean;
 
-  historyView: "c1" | "c2" | null;
-  parentQuizCorrect: boolean;
+  // Stage 8 — second commit
+  secondCommitDone: boolean;
+  secondCommitInspected: boolean;
 
-  experimentCreated: boolean;
-  headOnExperiment: boolean;
-  c3Created: boolean;
-  tagAdded: boolean;
+  // Stage 9 — dedup
+  dedupQuizCorrect: boolean;
+
+  // Stage 10 — branches
+  branchACreated: boolean;
+  headOnBranchA: boolean;
+  branchACommitDone: boolean;
+
+  // Stage 11 — tags
+  tagCreated: boolean;
 };
 
 export const INITIAL_SIM: SimState = {
-  membersContent: CONTENT_RODRIGO,
-  tracked: false,
-  dedupCorrect: false,
-
+  trackerQuizCorrect: false,
+  hashDemoRun: false,
+  hashSameTwiceSeen: false,
+  repoInitialized: false,
   workingContent: CONTENT_RODRIGO,
   staged: false,
-  committedStage2: false,
+  firstCommitDone: false,
   stagingQuizCorrect: false,
-
-  blobRevealed: false,
-  treeRevealed: false,
-  commitRevealed: false,
-
-  tasksContent: CONTENT_RODRIGO,
-  c2Created: false,
-  compareSnapshots: false,
-
-  historyView: null,
-  parentQuizCorrect: false,
-
-  experimentCreated: false,
-  headOnExperiment: false,
-  c3Created: false,
-  tagAdded: false,
+  objectsFolderOpened: false,
+  commitInspected: false,
+  treeInspected: false,
+  blobInspected: false,
+  blobNameNoteRead: false,
+  secondCommitDone: false,
+  secondCommitInspected: false,
+  dedupQuizCorrect: false,
+  branchACreated: false,
+  headOnBranchA: false,
+  branchACommitDone: false,
+  tagCreated: false,
 };
 
 export const STAGE_LABELS = [
   "Git tracks content",
-  "Three places for changes",
-  "Objects: blob, tree, commit",
-  "Second commit & reuse",
-  "Connected history",
-  "Branches, HEAD, tags",
-  "Recap & try it",
+  "Content → hash key",
+  "git init & .git/objects",
+  "Working, staging, commit",
+  "Three objects appear",
+  "The commit object",
+  "The tree object",
+  "The blob object",
+  "Second commit & parent",
+  "Reuse the same blob",
+  "Branches & HEAD",
+  "Tags",
+  "Recap",
 ] as const;
 
-export function blobForContent(content: string): GitBlob {
+export const STAGE_COUNT = STAGE_LABELS.length;
+
+export function blob(): GitBlob {
   return {
     kind: "blob",
-    id: `blob ${IDS.blob1}…`,
     shortId: IDS.blob1,
-    content,
+    fullId: `${IDS.blob1}05855a2389ddac28d1b167dd48b2226141`,
+    content: CONTENT_RODRIGO,
   };
 }
 
-export function tree1(): GitTree {
+export function treeMembers(): GitTree {
   return {
     kind: "tree",
-    id: `tree ${IDS.tree1}…`,
     shortId: IDS.tree1,
-    label: "root",
+    fullId: `${IDS.tree1}214553ccc9a66cd62ad8b05d56775bf465`,
+    label: "root tree",
     entries: [
       {
-        name: "members.txt",
+        name: "Members.txt",
         mode: "100644",
-        targetId: IDS.blob1,
-        targetKind: "blob",
         targetShort: IDS.blob1,
+        targetKind: "blob",
       },
     ],
   };
 }
 
-export function tree2(): GitTree {
+export function treeTasks(): GitTree {
   return {
     kind: "tree",
-    id: `tree ${IDS.tree2}…`,
     shortId: IDS.tree2,
-    label: "tasks/",
+    fullId: `${IDS.tree2}9c4e21a88b05d56775bf465a3f812`,
+    label: "Tasks/",
     entries: [
       {
-        name: "wash-dishes.txt",
+        name: "Wash the dishes.txt",
         mode: "100644",
-        targetId: IDS.blob1,
-        targetKind: "blob",
         targetShort: IDS.blob1,
+        targetKind: "blob",
       },
     ],
   };
 }
 
-export function tree3(): GitTree {
+export function treeRootC2(): GitTree {
   return {
     kind: "tree",
-    id: `tree ${IDS.tree3}…`,
     shortId: IDS.tree3,
-    label: "root",
+    fullId: `${IDS.tree3}7d2a91c8e441553ccc9a66cd62ad8b05`,
+    label: "root tree",
     entries: [
       {
-        name: "members.txt",
+        name: "Members.txt",
         mode: "100644",
-        targetId: IDS.blob1,
-        targetKind: "blob",
         targetShort: IDS.blob1,
+        targetKind: "blob",
       },
       {
-        name: "tasks",
+        name: "Tasks",
         mode: "040000",
-        targetId: IDS.tree2,
-        targetKind: "tree",
         targetShort: IDS.tree2,
+        targetKind: "tree",
       },
     ],
   };
@@ -195,77 +198,95 @@ export function tree3(): GitTree {
 export function commit1(): GitCommit {
   return {
     kind: "commit",
-    id: `commit ${IDS.commit1}…`,
     shortId: IDS.commit1,
-    message: "Add members.txt",
-    parentIds: [],
+    fullId: `${IDS.commit1}c233a67fa1ba4807271b840532e136f624`,
+    message: "Add Members.txt",
     parentShorts: [],
-    treeId: IDS.tree1,
     treeShort: IDS.tree1,
     author: "you",
-    timestamp: "2026-03-01 10:00",
+    date: "2026-03-01",
   };
 }
 
 export function commit2(): GitCommit {
   return {
     kind: "commit",
-    id: `commit ${IDS.commit2}…`,
     shortId: IDS.commit2,
-    message: "Add tasks folder",
-    parentIds: [IDS.commit1],
+    fullId: `${IDS.commit2}d91e4f2a8b2d9134c567890abcdef123456`,
+    message: "Add Tasks folder",
     parentShorts: [IDS.commit1],
-    treeId: IDS.tree3,
     treeShort: IDS.tree3,
     author: "you",
-    timestamp: "2026-03-01 11:30",
+    date: "2026-03-02",
   };
 }
 
 export function commit3(): GitCommit {
   return {
     kind: "commit",
-    id: `commit ${IDS.commit3}…`,
     shortId: IDS.commit3,
-    message: "Experiment tweak",
-    parentIds: [IDS.commit2],
+    fullId: `${IDS.commit3}ac03b7f1ac031234567890abcdef123456`,
+    message: "Tweak on branchA",
     parentShorts: [IDS.commit2],
-    treeId: IDS.tree3,
     treeShort: IDS.tree3,
     author: "you",
-    timestamp: "2026-03-01 14:00",
+    date: "2026-03-03",
   };
 }
 
-export function isStageComplete(stage: LessonStage, sim: SimState): boolean {
+export function isStageComplete(stage: number, sim: SimState): boolean {
   switch (stage) {
     case 0:
-      return sim.tracked && sim.dedupCorrect;
+      return sim.trackerQuizCorrect;
     case 1:
-      return sim.committedStage2 && sim.stagingQuizCorrect;
+      return sim.hashDemoRun && sim.hashSameTwiceSeen;
     case 2:
-      return sim.blobRevealed && sim.treeRevealed && sim.commitRevealed;
+      return sim.repoInitialized;
     case 3:
-      return sim.c2Created && sim.compareSnapshots;
+      return sim.firstCommitDone && sim.stagingQuizCorrect;
     case 4:
-      return sim.historyView !== null && sim.parentQuizCorrect;
+      return sim.objectsFolderOpened;
     case 5:
-      return (
-        sim.experimentCreated &&
-        sim.headOnExperiment &&
-        sim.c3Created &&
-        sim.tagAdded
-      );
+      return sim.commitInspected;
     case 6:
+      return sim.treeInspected;
+    case 7:
+      return sim.blobInspected && sim.blobNameNoteRead;
+    case 8:
+      return sim.secondCommitDone && sim.secondCommitInspected;
+    case 9:
+      return sim.dedupQuizCorrect;
+    case 10:
+      return sim.branchACreated && sim.branchACommitDone;
+    case 11:
+      return sim.tagCreated;
+    case 12:
       return true;
     default:
       return false;
   }
 }
 
-export function maxUnlockedStage(sim: SimState): LessonStage {
-  for (let i = 0; i < STAGE_LABELS.length; i++) {
-    if (!isStageComplete(i as LessonStage, sim)) return i as LessonStage;
+export function maxUnlockedStage(sim: SimState): number {
+  for (let i = 0; i < STAGE_COUNT; i++) {
+    if (!isStageComplete(i, sim)) return i;
   }
-  return 6;
+  return STAGE_COUNT - 1;
 }
+
+export const COMMIT1_CAT = `tree ${IDS.tree1}214553ccc9a66cd62ad8b05d56775bf465
+author you <you@example.com>
+date 2026-03-01
+
+Add Members.txt`;
+
+export const TREE1_CAT = `100644 blob ${IDS.blob1}05855a2389ddac28d1b167dd48b2226141\tMembers.txt`;
+
+export const BLOB1_CAT = CONTENT_RODRIGO;
+
+export const COMMIT2_CAT = `tree ${IDS.tree3}7d2a91c8e441553ccc9a66cd62ad8b05
+parent ${IDS.commit1}c233a67fa1ba4807271b840532e136f624
+author you <you@example.com>
+date 2026-03-02
+
+Add Tasks folder`;
