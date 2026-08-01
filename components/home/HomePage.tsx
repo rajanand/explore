@@ -13,6 +13,7 @@ const MODULE_META: Record<
   transformer: { order: 2, label: "Architecture", duration: "~40 min" },
   rag: { order: 3, label: "Retrieval", duration: "~20 min" },
   ontology: { order: 4, label: "Knowledge", duration: "~20 min" },
+  "git-internals": { order: 5, label: "Version control", duration: "~25 min" },
 };
 
 const PATH_STEPS = [

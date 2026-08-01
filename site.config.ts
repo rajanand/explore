@@ -44,5 +44,12 @@ export const siteConfig: SiteConfig = {
       description: "Understand Self-Attention, Multi-Head Attention, and Encoder-Decoder blocks visually.",
       category: "Artificial Intelligence",
     },
+    {
+      slug: "git-internals",
+      title: "Git Internals",
+      description:
+        "Blobs, trees, commits, and refs — a hands-on tour of what Git stores under the hood.",
+      category: "Software Engineering",
+    },
   ],
 };
