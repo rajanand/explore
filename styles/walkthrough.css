@@ -1,0 +1,1035 @@
+/* Shared walkthrough styles — theme via --walk-* tokens in globals.css */
+/* Future topic pages: import this file in app/topics/{slug}/layout.tsx */
+
+.walkthrough-root {
+  --bg: var(--walk-bg);
+  --panel: var(--walk-panel);
+  --ink: var(--walk-ink);
+  --ink-dim: var(--walk-ink-dim);
+  --amber: var(--walk-amber);
+  --teal: var(--walk-teal);
+  --rose: var(--walk-rose);
+  --line: var(--walk-line);
+  --line-soft: var(--walk-line-soft);
+  --radius: var(--walk-radius);
+
+  background: var(--walk-bg);
+  color: var(--walk-ink);
+  font-family: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  flex: 1;
+  min-height: calc(100vh - var(--navbar-height));
+  min-width: 0;
+}
+
+.walkthrough-root * {
+  box-sizing: border-box;
+}
+
+.walkthrough-root h1,
+.walkthrough-root h2,
+.walkthrough-root h3,
+.walkthrough-root .display {
+  font-family: var(--font-fraunces), "Fraunces", ui-serif, Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.walkthrough-root .mono {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+}
+
+.walkthrough-root a {
+  color: var(--amber);
+}
+
+.walkthrough-root .app {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - var(--navbar-height));
+}
+
+@media (max-width: 860px) {
+  .walkthrough-root .app {
+    grid-template-columns: 1fr;
+  }
+  .walkthrough-root .sidebar {
+    position: static !important;
+    height: auto !important;
+    border-right: none;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .walkthrough-root .sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .walkthrough-root .sidebar .step-link {
+    flex: 1 1 auto;
+  }
+}
+
+.walkthrough-root .sidebar {
+  position: sticky;
+  top: 0;
+  height: calc(100vh - var(--navbar-height));
+  overflow-y: auto;
+  padding: 28px 20px;
+  border-right: 1px solid var(--line-soft);
+  background: linear-gradient(180deg, var(--walk-sidebar-gradient-top), var(--walk-bg));
+}
+
+.walkthrough-root .sidebar .brand {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-dim);
+  margin: 0 0 24px 2px;
+}
+
+.walkthrough-root .sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.walkthrough-root .step-link {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  color: var(--ink-dim);
+  text-decoration: none;
+  font-size: 14px;
+  transition: background 0.2s, color 0.2s;
+  border: 1px solid transparent;
+}
+
+.walkthrough-root .step-link .num {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--line);
+  min-width: 18px;
+}
+
+.walkthrough-root .step-link:hover {
+  background: var(--panel);
+  color: var(--ink);
+}
+
+.walkthrough-root .step-link.active {
+  background: var(--panel);
+  color: var(--amber);
+  border-color: var(--line-soft);
+}
+
+.walkthrough-root .step-link.active .num {
+  color: var(--amber);
+}
+
+.walkthrough-root main {
+  min-width: 0;
+}
+
+.walkthrough-root section.step {
+  padding: 90px 56px;
+  max-width: 900px;
+  margin: 0 auto;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.walkthrough-root section.step:last-of-type {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .walkthrough-root section.step {
+    padding: 56px 22px;
+  }
+}
+
+.walkthrough-root .eyebrow {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0 0 10px 0;
+}
+
+.walkthrough-root h2.title {
+  font-size: 34px;
+  margin: 0 0 18px 0;
+}
+
+.walkthrough-root p.lede {
+  font-size: 17px;
+  color: var(--ink-dim);
+  max-width: 62ch;
+}
+
+.walkthrough-root p {
+  max-width: 62ch;
+  color: var(--ink-dim);
+  margin: 1em 0 0 0;
+}
+
+.walkthrough-root p.lede,
+.walkthrough-root p.eyebrow,
+.walkthrough-root p.note {
+  margin-top: 0;
+}
+
+.walkthrough-root section.step > p:first-of-type {
+  margin-top: 0;
+}
+
+.walkthrough-root p strong {
+  color: var(--ink);
+}
+
+.walkthrough-root .panel {
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin: 28px 0;
+}
+
+.walkthrough-root .note {
+  font-size: 14px;
+  color: var(--ink-dim);
+  border-left: 2px solid var(--amber);
+  padding-left: 14px;
+  margin: 20px 0;
+}
+
+.walkthrough-root .hero {
+  padding: 110px 56px 70px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.walkthrough-root .hero h1 {
+  font-size: 52px;
+  line-height: 1.05;
+  margin: 0 0 18px 0;
+}
+
+.walkthrough-root .hero h1 em {
+  font-style: italic;
+  color: var(--amber);
+}
+
+.walkthrough-root .hero p.lede {
+  font-size: 19px;
+}
+
+@media (max-width: 640px) {
+  .walkthrough-root .hero h1 {
+    font-size: 36px;
+  }
+  .walkthrough-root .hero {
+    padding: 70px 22px 50px;
+  }
+}
+
+.walkthrough-root .tokrow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  padding-top: 8px;
+}
+
+.walkthrough-root .tok-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.walkthrough-root .tok {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 14px;
+  background: var(--walk-tok-bg);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 11px;
+  color: var(--ink);
+  transition: background 0.25s, border-color 0.25s, opacity 0.25s;
+  cursor: default;
+  user-select: none;
+}
+
+.walkthrough-root .tok.focus {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+  color: var(--amber);
+}
+
+.walkthrough-root .tok.target {
+  border-color: var(--teal);
+  background: var(--walk-tok-target-bg);
+  color: var(--teal);
+}
+
+.walkthrough-root .tok.dim {
+  opacity: 0.45;
+}
+
+.walkthrough-root .tok.small {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+.walkthrough-root .tok.interactive {
+  cursor: pointer;
+}
+
+.walkthrough-root .tok-btn {
+  display: inline-flex;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  border-radius: 7px;
+}
+
+.walkthrough-root .tok-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.walkthrough-root .tokrow-scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  max-width: 100%;
+}
+
+.walkthrough-root .interactive-explainer {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .embedding-scatter-panel {
+  margin-top: 16px;
+}
+
+.walkthrough-root .embedding-scatter-title {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.walkthrough-root .embedding-vector-title {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.walkthrough-root .embedding-scatter-wrap {
+  width: 100%;
+}
+
+.walkthrough-root .embedding-scatter {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.walkthrough-root .embedding-axis {
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.walkthrough-root .embedding-axis-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  fill: var(--ink-dim);
+}
+
+.walkthrough-root .embedding-cluster-region {
+  fill: color-mix(in srgb, var(--teal) 12%, transparent);
+  stroke: var(--teal);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+  opacity: 0.9;
+}
+
+.walkthrough-root .embedding-cluster-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--teal);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.walkthrough-root .embedding-nearby-link line {
+  stroke: var(--amber);
+  stroke-width: 2;
+  stroke-dasharray: 4 3;
+  opacity: 0.85;
+}
+
+.walkthrough-root .embedding-nearby-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 10px;
+  fill: var(--amber);
+}
+
+.walkthrough-root .embedding-point-group {
+  cursor: pointer;
+}
+
+.walkthrough-root .embedding-point-group:focus-visible {
+  outline: none;
+}
+
+.walkthrough-root .embedding-point-group:focus-visible .embedding-point {
+  stroke: var(--amber);
+  stroke-width: 2.5;
+}
+
+.walkthrough-root .embedding-point-halo {
+  fill: transparent;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.walkthrough-root .embedding-point-group:hover .embedding-point-halo,
+.walkthrough-root .embedding-point-group.selected .embedding-point-halo,
+.walkthrough-root .embedding-point-group.focus .embedding-point-halo {
+  opacity: 1;
+}
+
+.walkthrough-root .embedding-point-group.focus .embedding-point-halo {
+  fill: color-mix(in srgb, var(--amber) 25%, transparent);
+}
+
+.walkthrough-root .embedding-point-group.target .embedding-point-halo {
+  fill: color-mix(in srgb, var(--teal) 25%, transparent);
+}
+
+.walkthrough-root .embedding-point-group.dim {
+  opacity: 0.35;
+}
+
+.walkthrough-root .embedding-point {
+  fill: var(--walk-tok-bg);
+  stroke: var(--line);
+  stroke-width: 1.5;
+  transition: fill 0.2s, stroke 0.2s, r 0.2s;
+}
+
+.walkthrough-root .embedding-point-group:hover .embedding-point,
+.walkthrough-root .embedding-point-group.selected .embedding-point {
+  stroke: var(--amber);
+}
+
+.walkthrough-root .embedding-point-group.focus .embedding-point {
+  fill: var(--walk-tok-focus-bg);
+  stroke: var(--amber);
+}
+
+.walkthrough-root .embedding-point-group.target .embedding-point {
+  fill: var(--walk-tok-target-bg);
+  stroke: var(--teal);
+}
+
+.walkthrough-root .embedding-point-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  fill: var(--ink);
+  pointer-events: none;
+}
+
+.walkthrough-root .embedding-point-group.dim .embedding-point-label {
+  fill: var(--ink-dim);
+}
+
+.walkthrough-root .embedding-scatter-hint {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.walkthrough-root .embedding-distance-note {
+  margin-top: 8px;
+}
+
+.walkthrough-root .vec {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin-top: 6px;
+  white-space: nowrap;
+}
+
+.walkthrough-root .loom-wrap {
+  position: relative;
+}
+
+.walkthrough-root .attention-matrix-wrap {
+  position: relative;
+}
+
+.walkthrough-root .attention-matrix-header {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 0 4px;
+}
+
+.walkthrough-root .attention-col-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .attention-col-label-center {
+  text-align: center;
+}
+
+.walkthrough-root .attention-matrix {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 8px 12px;
+  position: relative;
+  align-items: center;
+}
+
+.walkthrough-root .attention-cell-query {
+  grid-column: 1;
+}
+
+.walkthrough-root .attention-cell-mid {
+  grid-column: 2;
+}
+
+.walkthrough-root .attention-cell-key {
+  grid-column: 3;
+}
+
+.walkthrough-root .attention-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.walkthrough-root .attention-row-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  min-height: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.walkthrough-root .attention-row-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+.walkthrough-root .attention-key-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 36px;
+  position: relative;
+  z-index: 1;
+}
+
+.walkthrough-root .attention-weight {
+  font-size: 11px;
+  color: var(--ink-dim);
+  min-width: 36px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.walkthrough-root .attention-lines-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 0;
+}
+
+.walkthrough-root .attention-line {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: butt;
+  transition: stroke-width 0.3s, opacity 0.3s;
+}
+
+.walkthrough-root .attention-arrow {
+  fill: currentColor;
+  transition: opacity 0.3s;
+}
+
+.walkthrough-root .attention-link.target {
+  color: var(--teal);
+}
+
+.walkthrough-root .attention-link.default {
+  color: var(--line);
+}
+
+.walkthrough-root .loom-svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.walkthrough-root .loom-arc {
+  fill: none;
+  transition: stroke-width 0.3s, opacity 0.3s;
+}
+
+.walkthrough-root .controls {
+  display: flex;
+  gap: 10px;
+  margin: 18px 0 6px;
+  flex-wrap: wrap;
+}
+
+.walkthrough-root .btn {
+  font-family: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 9px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.walkthrough-root .btn:hover {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.walkthrough-root .btn.active {
+  border-color: var(--amber);
+  color: var(--amber);
+  background: var(--walk-btn-active-bg);
+}
+
+.walkthrough-root .btn:focus-visible,
+.walkthrough-root .step-link:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.walkthrough-root .legend {
+  font-size: 13px;
+  color: var(--ink-dim);
+  margin-top: 14px;
+}
+
+.walkthrough-root .legend .dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+.walkthrough-root .heads {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.walkthrough-root .step-mechanics {
+  margin-top: 8px;
+}
+
+.walkthrough-root .step-mechanics-lead {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+
+.walkthrough-root .step-formula {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background: var(--walk-tok-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--ink-dim);
+  text-align: center;
+}
+
+.walkthrough-root .step-detail-note {
+  margin: 22px 0 10px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.walkthrough-root .step-model-list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+}
+
+.walkthrough-root .step-model-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .step-model-badge {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--teal);
+  background: var(--walk-tok-target-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 999px;
+  padding: 2px 10px;
+}
+
+.walkthrough-root .step-footnote {
+  margin-top: 18px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-dim);
+}
+
+.walkthrough-root .posenc-demo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.walkthrough-root .posenc-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.walkthrough-root .posenc-row-result {
+  padding-top: 10px;
+  border-top: 1px dashed var(--line-soft);
+}
+
+.walkthrough-root .posenc-label {
+  font-size: 12px;
+  color: var(--ink-dim);
+  min-width: 72px;
+  flex-shrink: 0;
+}
+
+.walkthrough-root .posenc-ellipsis {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  color: var(--ink-dim);
+  font-size: 13px;
+}
+
+.walkthrough-root .step-layer-anatomy {
+  margin-top: 16px;
+}
+
+.walkthrough-root .step-layer-anatomy-title {
+  margin: 0 0 12px;
+  font-size: 12px;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.walkthrough-root .step-layer-anatomy-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.5;
+}
+
+.walkthrough-root .head-card h4 {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-weight: 500;
+  color: var(--ink-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.walkthrough-root .head-card-desc {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-dim);
+  font-style: italic;
+}
+
+.walkthrough-root .head-card {
+  background: var(--walk-head-card-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.walkthrough-root .head-card .tok {
+  font-size: 12px;
+  padding: 5px 8px;
+}
+
+.walkthrough-root .ffn-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.walkthrough-root .ffn-box {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+
+.walkthrough-root .ffn-box.amber {
+  border-style: solid;
+  color: var(--amber);
+  border-color: var(--amber);
+}
+
+.walkthrough-root .ffn-box.teal {
+  border-style: solid;
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.walkthrough-root .arrow {
+  color: var(--line);
+  font-size: 18px;
+}
+
+.walkthrough-root .stack {
+  position: relative;
+  padding: 20px 0;
+}
+
+.walkthrough-root .layer-block {
+  background: var(--walk-head-card-bg);
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  color: var(--ink-dim);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.walkthrough-root .layer-block .lnum {
+  color: var(--teal);
+}
+
+.walkthrough-root .layer-block-btn {
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+  background: var(--walk-head-card-bg);
+}
+
+.walkthrough-root .layer-block-btn:hover {
+  border-color: var(--line);
+}
+
+.walkthrough-root .layer-block-btn.active {
+  border-color: var(--amber);
+  background: var(--walk-tok-focus-bg);
+}
+
+.walkthrough-root .layer-block-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+
+.walkthrough-root .stack-depth-viz {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin: 16px 0 12px;
+  flex-wrap: wrap;
+}
+
+.walkthrough-root .stack-depth-bar {
+  width: 10px;
+  height: 22px;
+  border-radius: 2px;
+  background: var(--line-soft);
+  transition: background 0.2s, height 0.2s;
+}
+
+.walkthrough-root .stack-depth-bar.filled {
+  background: var(--line);
+}
+
+.walkthrough-root .stack-depth-bar.current {
+  background: var(--amber);
+  height: 28px;
+}
+
+.walkthrough-root .stack-depth-more {
+  font-size: 11px;
+  color: var(--ink-dim);
+  margin-left: 6px;
+}
+
+.walkthrough-root .stack-highlight-row {
+  margin-top: 14px;
+}
+
+.walkthrough-root .ffn-token-picker {
+  margin-bottom: 14px;
+}
+
+.walkthrough-root .ffn-stage-controls {
+  margin-bottom: 14px;
+}
+
+.walkthrough-root .ffn-stage-row {
+  margin-top: 0;
+}
+
+.walkthrough-root .bar-row-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.walkthrough-root .bar-row-btn:hover .bar-label {
+  color: var(--ink);
+}
+
+.walkthrough-root .bar-row-btn:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.walkthrough-root .stack-loop {
+  text-align: center;
+  color: var(--ink-dim);
+  font-size: 13px;
+  margin-top: 4px;
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+}
+
+.walkthrough-root .bars {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.walkthrough-root .bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.walkthrough-root .bar-label {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 13px;
+  width: 70px;
+  color: var(--ink-dim);
+  flex-shrink: 0;
+}
+
+.walkthrough-root .bar-track {
+  flex: 1;
+  height: 20px;
+  background: var(--walk-bar-track-bg);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.walkthrough-root .bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  border-radius: 5px 0 0 5px;
+  transition: width 1s ease;
+  width: 0%;
+}
+
+.walkthrough-root .bar-pct {
+  font-family: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--ink-dim);
+  width: 42px;
+  text-align: right;
+}
+
+.walkthrough-root footer {
+  padding: 60px 56px 100px;
+  max-width: 900px;
+  margin: 0 auto;
+  color: var(--ink-dim);
+  font-size: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .walkthrough-root .bar-fill,
+  .walkthrough-root .loom-arc,
+  .walkthrough-root .tok {
+    transition: none;
+  }
+}

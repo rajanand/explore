@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inside a Transformer — a step-by-step walkthrough</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #14151f;
+    --panel: #1c1e2c;
+    --panel-raised: #23253590;
+    --ink: #e8e6e1;
+    --ink-dim: #a6a3ba;
+    --amber: #e8a33d;
+    --teal: #5fb3b3;
+    --rose: #d97f8d;
+    --line: #3a3d52;
+    --line-soft: #2a2c3c;
+    --radius: 10px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .display { font-family: 'Fraunces', serif; font-weight: 600; letter-spacing: -0.01em; }
+
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  a { color: var(--amber); }
+
+  /* ---------- Layout ---------- */
+
+  .app { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  @media (max-width: 860px){
+    .app { grid-template-columns: 1fr; }
+    .sidebar { position: static !important; height: auto !important; border-right: none; border-bottom: 1px solid var(--line-soft); }
+    .sidebar nav { display: flex; flex-wrap: wrap; gap: 6px; }
+    .sidebar .step-link { flex: 1 1 auto; }
+  }
+
+  .sidebar{
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 28px 20px;
+    border-right: 1px solid var(--line-soft);
+    background: linear-gradient(180deg, #16182280, #14151f);
+  }
+
+  .sidebar .brand{
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-dim);
+    margin: 0 0 24px 2px;
+  }
+
+  .sidebar nav { display: flex; flex-direction: column; gap: 2px; }
+
+  .step-link{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 10px;
+    border-radius: 8px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 14px;
+    transition: background 0.2s, color 0.2s;
+    border: 1px solid transparent;
+  }
+  .step-link .num{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--line);
+    min-width: 18px;
+  }
+  .step-link:hover { background: var(--panel); color: var(--ink); }
+  .step-link.active{
+    background: var(--panel);
+    color: var(--amber);
+    border-color: var(--line-soft);
+  }
+  .step-link.active .num { color: var(--amber); }
+
+  main { min-width: 0; }
+
+  section.step{
+    padding: 90px 56px;
+    max-width: 900px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  section.step:last-child { border-bottom: none; }
+
+  @media (max-width: 640px){
+    section.step { padding: 56px 22px; }
+  }
+
+  .eyebrow{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin: 0 0 10px 0;
+  }
+
+  h2.title{ font-size: 34px; margin: 0 0 18px 0; }
+
+  p.lede{ font-size: 17px; color: var(--ink-dim); max-width: 62ch; }
+  p { max-width: 62ch; }
+
+  .panel{
+    background: var(--panel);
+    border: 1px solid var(--line-soft);
+    border-radius: var(--radius);
+    padding: 26px;
+    margin: 28px 0;
+  }
+
+  .note{
+    font-size: 14px;
+    color: var(--ink-dim);
+    border-left: 2px solid var(--amber);
+    padding-left: 14px;
+    margin: 20px 0;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero{
+    padding: 110px 56px 70px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero h1{ font-size: 52px; line-height: 1.05; margin: 0 0 18px 0; }
+  .hero h1 em{ font-style: italic; color: var(--amber); }
+  .hero p.lede { font-size: 19px; }
+  @media (max-width: 640px){ .hero h1 { font-size: 36px; } .hero { padding: 70px 22px 50px; } }
+
+  /* ---------- Token chips ---------- */
+
+  .tokrow{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+    padding-top: 8px;
+  }
+  .tok{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    background: #262842;
+    border: 1px solid var(--line);
+    border-radius: 7px;
+    padding: 7px 11px;
+    color: var(--ink);
+    transition: background 0.25s, border-color 0.25s, transform 0.2s;
+    cursor: default;
+    user-select: none;
+  }
+  .tok.focus{ border-color: var(--amber); background: #33290f; color: var(--amber); }
+  .tok.target{ border-color: var(--teal); background: #10292b; color: var(--teal); }
+  .tok.dim{ opacity: 0.45; }
+
+  .vec{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-dim);
+    margin-top: 6px;
+    white-space: nowrap;
+  }
+
+  /* ---------- Loom (attention arcs) ---------- */
+
+  .loom-wrap{ position: relative; }
+  .loom-svg{ position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+  .loom-arc{ fill: none; transition: stroke-width 0.3s, opacity 0.3s; }
+
+  .controls{ display: flex; gap: 10px; margin: 18px 0 6px; flex-wrap: wrap; }
+  .btn{
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    padding: 9px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn:hover{ border-color: var(--amber); color: var(--amber); }
+  .btn.active{ border-color: var(--amber); color: var(--amber); background: #2a2410; }
+  .btn:focus-visible, .step-link:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+
+  .legend{ font-size: 13px; color: var(--ink-dim); margin-top: 14px; }
+  .legend .dot{ display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:middle; }
+
+  /* ---------- multi-head grid ---------- */
+  .heads{ display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; margin-top: 22px; }
+  .head-card{ background: #1a1c2a; border: 1px solid var(--line-soft); border-radius: var(--radius); padding: 18px; }
+  .head-card h4{ margin: 0 0 12px; font-size: 13px; font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--ink-dim); text-transform: uppercase; letter-spacing: 0.06em; }
+  .head-card .tok{ font-size: 12px; padding: 5px 8px; }
+
+  /* ---------- feed forward ---------- */
+  .ffn-row{ display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin: 20px 0; }
+  .ffn-box{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-dim);
+    border: 1px dashed var(--line);
+    border-radius: 8px;
+    padding: 10px 14px;
+    white-space: nowrap;
+  }
+  .arrow{ color: var(--line); font-size: 18px; }
+
+  /* ---------- stack ---------- */
+  .stack{ position: relative; padding: 20px 0; }
+  .layer-block{
+    background: #1a1c2a;
+    border: 1px solid var(--line-soft);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--ink-dim);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .layer-block .lnum{ color: var(--teal); }
+  .stack-loop{
+    text-align: center;
+    color: var(--ink-dim);
+    font-size: 13px;
+    margin-top: 4px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* ---------- output bars ---------- */
+  .bars{ margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .bar-row{ display: flex; align-items: center; gap: 12px; }
+  .bar-label{ font-family: 'JetBrains Mono', monospace; font-size: 13px; width: 70px; color: var(--ink-dim); flex-shrink: 0; }
+  .bar-track{ flex: 1; height: 20px; background: #20222f; border-radius: 5px; overflow: hidden; }
+  .bar-fill{ height: 100%; background: linear-gradient(90deg, var(--teal), var(--amber)); border-radius: 5px 0 0 5px; transition: width 1s ease; width: 0%; }
+  .bar-pct{ font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--ink-dim); width: 42px; text-align: right; }
+
+  footer{ padding: 60px 56px 100px; max-width: 900px; margin: 0 auto; color: var(--ink-dim); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar">
+    <p class="brand">Inside a Transformer</p>
+    <nav id="nav">
+      <a class="step-link" data-target="hero" href="#hero"><span class="num">·</span> Start</a>
+      <a class="step-link" data-target="tokenize" href="#tokenize"><span class="num">01</span> Tokenization</a>
+      <a class="step-link" data-target="embed" href="#embed"><span class="num">02</span> Embeddings</a>
+      <a class="step-link" data-target="posenc" href="#posenc"><span class="num">03</span> Positional encoding</a>
+      <a class="step-link" data-target="attention" href="#attention"><span class="num">04</span> Self-attention</a>
+      <a class="step-link" data-target="multihead" href="#multihead"><span class="num">05</span> Multi-head attention</a>
+      <a class="step-link" data-target="ffn" href="#ffn"><span class="num">06</span> Feed-forward</a>
+      <a class="step-link" data-target="stack" href="#stack"><span class="num">07</span> Stacking layers</a>
+      <a class="step-link" data-target="output" href="#output"><span class="num">08</span> Predicting the next word</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section class="hero" id="hero">
+      <p class="eyebrow">A step-by-step walkthrough</p>
+      <h1>What actually happens<br>inside a <em>transformer</em>?</h1>
+      <p class="lede">We'll follow one sentence — the same one you can't parse without context — through every stage of the pipeline: from raw text, to numbers, to a model that knows exactly which word "it" refers to.</p>
+      <div class="panel mono" style="font-size:15px; color:var(--ink);">
+        "The trophy didn't fit in the suitcase because it was too big."
+      </div>
+      <p class="note">Scroll down, or jump to any stage on the left. Step 4 is interactive — try flipping "big" to "small."</p>
+    </section>
+
+    <section class="step" id="tokenize">
+      <p class="eyebrow">Step 01</p>
+      <h2 class="title">Tokenization</h2>
+      <p class="lede">The model can't read words — it reads <strong>tokens</strong>, small chunks of text (often whole words, sometimes word-pieces). The first thing that happens to any input is splitting it apart.</p>
+      <div class="panel">
+        <div class="tokrow" id="tok-row-1"></div>
+        <p class="legend">13 tokens, in order. Punctuation and word-endings can become their own tokens too.</p>
+      </div>
+      <p>Order is preserved for now — but notice that at this stage, tokens are just a list. Nothing here tells the model that "it" relates to "trophy." That comes later.</p>
+    </section>
+
+    <section class="step" id="embed">
+      <p class="eyebrow">Step 02</p>
+      <h2 class="title">Embeddings</h2>
+      <p class="lede">Each token is converted into a vector — a list of numbers — that captures something about its meaning. Similar words end up with similar vectors.</p>
+      <div class="panel">
+        <div class="tokrow" id="tok-row-2"></div>
+      </div>
+      <p>Real models use hundreds or thousands of numbers per token. The vectors above are shortened for readability — but the idea holds: "trophy" and "suitcase" both being physical objects would already sit closer together in this space than either does to "because."</p>
+    </section>
+
+    <section class="step" id="posenc">
+      <p class="eyebrow">Step 03</p>
+      <h2 class="title">Positional encoding</h2>
+      <p class="lede">Here's the catch from processing everything in parallel: the model no longer reads left-to-right, so it has no built-in sense of order. A pattern added to each token's vector encodes <em style="font-style:italic; color:var(--teal)">where</em> it sits in the sentence.</p>
+      <div class="panel">
+        <div class="tokrow" id="tok-row-3"></div>
+      </div>
+      <p class="note">This is the direct fix for the tradeoff we made by dropping RNN-style sequential reading: we gained parallelism, so we have to explicitly re-inject position instead of getting it for free.</p>
+    </section>
+
+    <section class="step" id="attention">
+      <p class="eyebrow">Step 04 — interactive</p>
+      <h2 class="title">Self-attention</h2>
+      <p class="lede">Now the key move: every token looks at every other token and asks, <em style="font-style:italic; color:var(--amber)">"how relevant are you to me?"</em> Try it below — flip the ending of the sentence and watch where "it" points.</p>
+
+      <div class="controls">
+        <button class="btn active" data-variant="big">…it was too <span class="mono">big</span>.</button>
+        <button class="btn" data-variant="small">…it was too <span class="mono">small</span>.</button>
+      </div>
+
+      <div class="panel loom-wrap">
+        <div class="tokrow" id="tok-row-4"></div>
+        <svg class="loom-svg" id="loom-svg"></svg>
+      </div>
+      <p class="legend"><span class="dot" style="background:var(--teal)"></span>thick, bright arc = high attention weight from "it" &nbsp;&nbsp; <span class="dot" style="background:var(--line)"></span>faint arc = low weight</p>
+
+      <p id="attention-explainer">With <strong>"big,"</strong> the thing that didn't fit is the trophy — so "it" attends strongly to <span class="mono" style="color:var(--teal)">trophy</span> and barely to <span class="mono">suitcase</span>.</p>
+      <p class="note">Same sentence structure, same word positions — but attention is computed from <em style="font-style:italic">meaning</em>, not distance. That's why swapping one word can flip the connection entirely.</p>
+    </section>
+
+    <section class="step" id="multihead">
+      <p class="eyebrow">Step 05</p>
+      <h2 class="title">Multi-head attention</h2>
+      <p class="lede">One attention pattern only captures one kind of relationship. So transformers run several attention "heads" in parallel, each free to specialize in something different.</p>
+      <div class="heads">
+        <div class="head-card">
+          <h4>Head A · local grammar</h4>
+          <div class="tokrow" id="head-a"></div>
+        </div>
+        <div class="head-card">
+          <h4>Head B · coreference</h4>
+          <div class="tokrow" id="head-b"></div>
+        </div>
+        <div class="head-card">
+          <h4>Head C · negation scope</h4>
+          <div class="tokrow" id="head-c"></div>
+        </div>
+      </div>
+      <p>Head A links neighboring words like "the" and "trophy." Head B is the one doing the work we saw in Step 04, tracing "it" back to "trophy." Head C tracks how "didn't" reaches forward to negate "fit." All of this happens at once, then gets combined.</p>
+    </section>
+
+    <section class="step" id="ffn">
+      <p class="eyebrow">Step 06</p>
+      <h2 class="title">Feed-forward network</h2>
+      <p class="lede">After attention mixes information <em style="font-style:italic">between</em> tokens, each token is passed through the same small neural network on its own — refining what it now knows, independently of its neighbors.</p>
+      <div class="panel">
+        <div class="ffn-row">
+          <div class="ffn-box">token: "it" + context from attention</div>
+          <span class="arrow">→</span>
+          <div class="ffn-box" style="border-style:solid; color:var(--amber); border-color:var(--amber);">feed-forward network</div>
+          <span class="arrow">→</span>
+          <div class="ffn-box" style="border-style:solid; color:var(--teal); border-color:var(--teal);">refined vector for "it"</div>
+        </div>
+      </div>
+      <p>Think of attention as "gathering information from the room," and the feed-forward step as "sitting down alone to think it over." Every token gets this same private processing step.</p>
+    </section>
+
+    <section class="step" id="stack">
+      <p class="eyebrow">Step 07</p>
+      <h2 class="title">Stacking layers</h2>
+      <p class="lede">One round of attention + feed-forward is called a <strong>layer</strong>, or block. Real models stack dozens of these, each one refining the representation further.</p>
+      <div class="panel">
+        <div class="stack">
+          <div class="layer-block"><span><span class="lnum">Layer 1</span> — attention → feed-forward</span><span>coarse patterns</span></div>
+          <div class="layer-block"><span><span class="lnum">Layer 2</span> — attention → feed-forward</span><span>combines Layer 1's output</span></div>
+          <div class="layer-block"><span><span class="lnum">Layer 3</span> — attention → feed-forward</span><span>increasingly abstract</span></div>
+          <div class="stack-loop">↻ repeated N times — small models: ~12 layers · large models: 90+</div>
+        </div>
+      </div>
+      <p>Early layers tend to pick up on grammar and local structure. Later layers build more abstract understanding — tone, intent, long-range facts — all built on top of what earlier layers already resolved.</p>
+    </section>
+
+    <section class="step" id="output">
+      <p class="eyebrow">Step 08</p>
+      <h2 class="title">Predicting the next word</h2>
+      <p class="lede">After the final layer, the model turns its representation of the sequence so far into a probability for every possible next token — then picks one.</p>
+      <div class="panel">
+        <p class="mono" style="color:var(--ink); margin-bottom:4px;">"The cat sat on the ___"</p>
+        <div class="bars" id="bars"></div>
+      </div>
+      <p>This is the step we started with, back at the very beginning: next-token prediction. Everything before it — tokenizing, embedding, positional encoding, attention, feed-forward, stacked dozens of times — exists to make this one probability distribution as informed as possible.</p>
+    </section>
+
+    <footer>
+      Built to accompany our walkthrough on RNNs, attention, and transformers. Scroll back up any time — nothing here is timed or one-shot.
+    </footer>
+
+  </main>
+</div>
+
+<script>
+(function(){
+  const sentence = ["The","trophy","didn't","fit","in","the","suitcase","because","it","was","too","big","."];
+  const sentenceSmall = sentence.slice(0, -2).concat(["small", "."]);
+
+  function renderTokRow(id, tokens, opts){
+    opts = opts || {};
+    const el = document.getElementById(id);
+    el.innerHTML = "";
+    tokens.forEach((t, i) => {
+      const chip = document.createElement("div");
+      chip.className = "tok";
+      chip.textContent = t;
+      chip.dataset.idx = i;
+      if(opts.vectors){
+        const wrap = document.createElement("div");
+        wrap.style.display = "inline-flex";
+        wrap.style.flexDirection = "column";
+        wrap.style.alignItems = "center";
+        wrap.appendChild(chip);
+        const v = document.createElement("div");
+        v.className = "vec";
+        v.textContent = "[" + opts.vectors[i].join(", ") + "]";
+        wrap.appendChild(v);
+        el.appendChild(wrap);
+      } else if(opts.pos){
+        const wrap = document.createElement("div");
+        wrap.style.display = "inline-flex";
+        wrap.style.flexDirection = "column";
+        wrap.style.alignItems = "center";
+        wrap.appendChild(chip);
+        const v = document.createElement("div");
+        v.className = "vec";
+        v.textContent = "pos " + i;
+        wrap.appendChild(v);
+        el.appendChild(wrap);
+      } else {
+        el.appendChild(chip);
+      }
+    });
+    return el;
+  }
+
+  function randVec(seed, n){
+    n = n || 4;
+    let out = [];
+    let s = seed;
+    for(let i=0;i<n;i++){
+      s = (s * 9301 + 49297) % 233280;
+      out.push((((s / 233280) * 2) - 1).toFixed(2));
+    }
+    return out;
+  }
+
+  // Step 1: tokenization
+  renderTokRow("tok-row-1", sentence);
+
+  // Step 2: embeddings
+  const vectors = sentence.map((_, i) => randVec(i*17+3));
+  renderTokRow("tok-row-2", sentence, { vectors });
+
+  // Step 3: positional encoding
+  renderTokRow("tok-row-3", sentence, { pos: true });
+
+  // Step 4: self-attention loom
+  const weightsBig = { focusIdx: 8, target: 1, other: 6, weights: {1: 0.92, 6: 0.10} };
+  const weightsSmall = { focusIdx: 8, target: 6, other: 1, weights: {1: 0.12, 6: 0.90} };
+
+  let currentVariant = "big";
+
+  function drawLoom(tokens, cfg){
+    const rowEl = renderTokRow("tok-row-4", tokens);
+    const svg = document.getElementById("loom-svg");
+    const wrap = document.querySelector(".loom-wrap");
+
+    // wait a frame so chip layout is settled
+    requestAnimationFrame(() => {
+      const wrapRect = wrap.getBoundingClientRect();
+      svg.setAttribute("width", wrapRect.width);
+      svg.setAttribute("height", wrapRect.height);
+      svg.innerHTML = "";
+
+      const chips = rowEl.querySelectorAll(".tok");
+      chips.forEach(c => c.classList.remove("focus","target","dim"));
+
+      const focusChip = chips[cfg.focusIdx];
+      focusChip.classList.add("focus");
+
+      chips.forEach((c, i) => {
+        if(i === cfg.focusIdx) return;
+        const w = cfg.weights[i] || 0.04;
+        if(w < 0.15) c.classList.add("dim");
+      });
+      chips[cfg.target].classList.add("target");
+
+      const focusRect = focusChip.getBoundingClientRect();
+      const fx = focusRect.left + focusRect.width/2 - wrapRect.left;
+      const fy = focusRect.top - wrapRect.top;
+
+      Object.keys(cfg.weights).forEach(k => {
+        const idx = parseInt(k, 10);
+        const w = cfg.weights[k];
+        const chip = chips[idx];
+        const r = chip.getBoundingClientRect();
+        const tx = r.left + r.width/2 - wrapRect.left;
+        const ty = r.top - wrapRect.top;
+        const midY = Math.min(fy, ty) - 30 - (w*20);
+        const path = document.createElementNS("http://www.w3.org/2000/svg","path");
+        const d = `M ${fx} ${fy} Q ${(fx+tx)/2} ${midY}, ${tx} ${ty}`;
+        path.setAttribute("d", d);
+        path.setAttribute("class", "loom-arc");
+        const color = idx === cfg.target ? "var(--teal)" : "var(--line)";
+        path.setAttribute("stroke", color);
+        path.setAttribute("stroke-width", Math.max(1, w*7));
+        path.setAttribute("opacity", Math.max(0.25, w));
+        svg.appendChild(path);
+      });
+    });
+  }
+
+  function setVariant(v){
+    currentVariant = v;
+    document.querySelectorAll("#attention .btn").forEach(b => b.classList.toggle("active", b.dataset.variant === v));
+    const tokens = v === "big" ? sentence : sentenceSmall;
+    const cfg = v === "big" ? weightsBig : weightsSmall;
+    drawLoom(tokens, cfg);
+    const explainer = document.getElementById("attention-explainer");
+    if(v === "big"){
+      explainer.innerHTML = 'With <strong>"big,"</strong> the thing that didn\'t fit is the trophy — so "it" attends strongly to <span class="mono" style="color:var(--teal)">trophy</span> and barely to <span class="mono">suitcase</span>.';
+    } else {
+      explainer.innerHTML = 'With <strong>"small,"</strong> the thing too small to contain the trophy is the suitcase — so "it" now attends strongly to <span class="mono" style="color:var(--teal)">suitcase</span> instead.';
+    }
+  }
+
+  document.querySelectorAll("#attention .btn").forEach(btn => {
+    btn.addEventListener("click", () => setVariant(btn.dataset.variant));
+  });
+
+  setVariant("big");
+  window.addEventListener("resize", () => setVariant(currentVariant));
+
+  // Step 5: multi-head mini visuals (static, simplified — just dim/highlight, no arcs, to keep it legible)
+  function renderHead(id, tokens, highlightIdxs){
+    const el = renderTokRow(id, tokens);
+    const chips = el.querySelectorAll(".tok");
+    chips.forEach((c, i) => {
+      if(highlightIdxs.includes(i)) c.classList.add("focus");
+      else c.classList.add("dim");
+    });
+  }
+  renderHead("head-a", sentence, [0,1]); // "The trophy"
+  renderHead("head-b", sentence, [8,1]); // "it" + "trophy"
+  renderHead("head-c", sentence, [2,3]); // "didn't" + "fit"
+
+  // Step 8: output bars
+  const preds = [
+    {label: "mat", pct: 47},
+    {label: "floor", pct: 18},
+    {label: "chair", pct: 11},
+    {label: "table", pct: 7},
+    {label: "sofa", pct: 4},
+  ];
+  const barsEl = document.getElementById("bars");
+  preds.forEach(p => {
+    const row = document.createElement("div");
+    row.className = "bar-row";
+    row.innerHTML = `<div class="bar-label mono">${p.label}</div><div class="bar-track"><div class="bar-fill" data-pct="${p.pct}"></div></div><div class="bar-pct mono">${p.pct}%</div>`;
+    barsEl.appendChild(row);
+  });
+
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        document.querySelectorAll(".bar-fill").forEach(b => { b.style.width = b.dataset.pct + "%"; });
+      }
+    });
+  }, { threshold: 0.4 });
+  barObserver.observe(document.getElementById("output"));
+
+  // Sidebar active-state tracking
+  const sections = document.querySelectorAll("section, .hero");
+  const navLinks = document.querySelectorAll(".step-link");
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        const id = entry.target.id;
+        navLinks.forEach(l => l.classList.toggle("active", l.dataset.target === id));
+      }
+    });
+  }, { rootMargin: "-40% 0px -50% 0px", threshold: 0 });
+  sections.forEach(s => navObserver.observe(s));
+
+})();
+</script>
+
+</body>
+</html>
