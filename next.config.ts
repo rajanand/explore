@@ -1,9 +1,11 @@
 import type { NextConfig } from "next";
 import createMDX from "@next/mdx";
 
-const isGithubPages = process.env.GITHUB_PAGES === "true";
-const repoName = "explore";
-const basePath = isGithubPages ? `/${repoName}` : "";
+/**
+ * Custom domain (explore.rajanand.org) serves at the site root — no basePath.
+ * Set BASE_PATH=/explore only if you need the github.io/explore/ URL instead.
+ */
+const basePath = process.env.BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   output: "export",
