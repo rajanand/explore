@@ -1,4 +1,5 @@
-import Sidebar from "@/components/Sidebar";
+import Footer from "@/components/Footer";
+import "@/styles/home.css";
 
 export default function HubLayout({
   children,
@@ -6,9 +7,9 @@ export default function HubLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-1 min-h-[calc(100vh-var(--navbar-height))]">
-      <Sidebar />
+    <div className="hub-shell">
       <main className="hub-main">{children}</main>
+      <Footer />
     </div>
   );
 }
