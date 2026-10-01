@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import ContextWalkthroughApp from "@/components/context-windows/ContextWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="context-windows" />;
+  return <ContextWalkthroughApp />;
 }

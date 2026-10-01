@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import ToolCallingWalkthroughApp from "@/components/tool-calling/ToolCallingWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="tool-calling" />;
+  return <ToolCallingWalkthroughApp />;
 }

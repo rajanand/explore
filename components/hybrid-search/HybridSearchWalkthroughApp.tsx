@@ -83,8 +83,8 @@ export default function HybridSearchWalkthroughApp() {
             ]}
           />
           <p className="note">
-            Next depth: <Link href="/topics/vector-databases">Vector databases</Link> (guide, being
-            expanded).
+            Next: <Link href="/topics/reranking">Reranking</Link> and{" "}
+            <Link href="/topics/vector-databases">Vector databases</Link>.
           </p>
         </section>
       </main>

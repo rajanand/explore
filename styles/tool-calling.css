@@ -1,0 +1,4 @@
+.tc-walkthrough {
+  --tc-accent: #2563eb;
+  --walk-amber: var(--tc-accent);
+}

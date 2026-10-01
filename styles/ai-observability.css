@@ -1,0 +1,4 @@
+.aobs-walkthrough {
+  --aobs-accent: #7c3aed;
+  --walk-amber: var(--aobs-accent);
+}

@@ -1,0 +1,4 @@
+.strm-walkthrough {
+  --strm-accent: #ea580c;
+  --walk-amber: var(--strm-accent);
+}

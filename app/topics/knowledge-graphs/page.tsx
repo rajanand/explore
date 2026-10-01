@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import KgWalkthroughApp from "@/components/knowledge-graphs/KgWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="knowledge-graphs" />;
+  return <KgWalkthroughApp />;
 }

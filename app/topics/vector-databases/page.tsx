@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import VectorDbWalkthroughApp from "@/components/vector-databases/VectorDbWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="vector-databases" />;
+  return <VectorDbWalkthroughApp />;
 }

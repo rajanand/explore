@@ -73,6 +73,27 @@ export const siteConfig: SiteConfig = {
       category: "Artificial Intelligence",
     },
     {
+      slug: "chunking-strategies",
+      title: "Advanced Chunking",
+      description:
+        "Size, overlap, and parent-child patterns for procedural IT docs and retrieval quality.",
+      category: "Artificial Intelligence",
+    },
+    {
+      slug: "document-parsing",
+      title: "Document Parsing for RAG",
+      description:
+        "Tables, PDF noise, and structured extraction before chunking and embedding.",
+      category: "Artificial Intelligence",
+    },
+    {
+      slug: "reranking",
+      title: "Reranking & Cross-Encoders",
+      description:
+        "Bi-encoder top-k vs cross-encoder rerank — when the extra latency pays off.",
+      category: "Artificial Intelligence",
+    },
+    {
       slug: "graph-rag",
       title: "Graph RAG & Hybrid Retrieval",
       description:

@@ -1,0 +1,4 @@
+.ctx-walkthrough {
+  --ctx-accent: #b45309;
+  --walk-amber: var(--ctx-accent);
+}

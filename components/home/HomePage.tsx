@@ -71,8 +71,8 @@ export default function HomePage() {
               </div>
               <div className="home-stat-divider" />
               <div className="home-stat">
-                <span className="home-stat-value">Guides</span>
-                <span className="home-stat-label">in Learn menu</span>
+                <span className="home-stat-value">{CURRICULUM_TRACKS.length}</span>
+                <span className="home-stat-label">learning paths</span>
               </div>
               <div className="home-stat-divider" />
               <div className="home-stat">
@@ -88,8 +88,8 @@ export default function HomePage() {
         <div className="home-paths-header">
           <h2>Pick a path</h2>
           <p>
-            Each path orders modules by what you need first. Guides are shorter
-            scenario-based reads; workshops have full interactives.
+            Each path orders modules by what you need first. Workshops include
+            multiple interactives and IT-shaped scenarios.
           </p>
         </div>
         <div className="home-path-grid">
@@ -127,8 +127,8 @@ export default function HomePage() {
           </li>
         </ul>
         <p className="home-quality-note">
-          Shallow guides are labeled in the Learn menu and are being expanded into
-          workshops. Prefer foundations and production workshops first.
+          Production track modules are full workshops — retrieval, agents, evals, and
+          governance with hands-on steps.
         </p>
       </section>
     </div>

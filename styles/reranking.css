@@ -1,0 +1,4 @@
+.rr-walkthrough {
+  --rr-accent: #be185d;
+  --walk-amber: var(--rr-accent);
+}

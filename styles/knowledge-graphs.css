@@ -1,0 +1,4 @@
+.kg-walkthrough {
+  --kg-accent: #0d9488;
+  --walk-amber: var(--kg-accent);
+}

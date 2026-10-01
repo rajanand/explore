@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import GovernanceWalkthroughApp from "@/components/ai-governance/GovernanceWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="ai-governance" />;
+  return <GovernanceWalkthroughApp />;
 }

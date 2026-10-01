@@ -1,0 +1,4 @@
+.gov-walkthrough {
+  --gov-accent: #4f46e5;
+  --walk-amber: var(--gov-accent);
+}

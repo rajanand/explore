@@ -1,0 +1,4 @@
+.chunk-walkthrough {
+  --chunk-accent: #15803d;
+  --walk-amber: var(--chunk-accent);
+}

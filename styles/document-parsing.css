@@ -1,0 +1,4 @@
+.doc-walkthrough {
+  --doc-accent: #c2410c;
+  --walk-amber: var(--doc-accent);
+}

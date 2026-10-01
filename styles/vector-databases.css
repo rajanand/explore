@@ -1,0 +1,4 @@
+.vdb-walkthrough {
+  --vdb-accent: #0369a1;
+  --walk-amber: var(--vdb-accent);
+}

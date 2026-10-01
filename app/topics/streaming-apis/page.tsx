@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import StreamingWalkthroughApp from "@/components/streaming-apis/StreamingWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="streaming-apis" />;
+  return <StreamingWalkthroughApp />;
 }

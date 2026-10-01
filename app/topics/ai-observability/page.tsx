@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import AiObsWalkthroughApp from "@/components/ai-observability/AiObsWalkthroughApp";
 
 export default function Page() {
-  return <GenericTopicWalkthrough slug="ai-observability" />;
+  return <AiObsWalkthroughApp />;
 }
