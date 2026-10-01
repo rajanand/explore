@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import LlmSecurityWalkthroughApp from "@/components/llm-security/LlmSecurityWalkthroughApp";
 
-export default function Page() {
-  return <GenericTopicWalkthrough slug="llm-security" />;
+export default function LlmSecurityPage() {
+  return <LlmSecurityWalkthroughApp />;
 }

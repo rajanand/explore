@@ -6,6 +6,7 @@ import AiAgentsSidebar, { AI_AGENTS_SECTION_IDS } from "@/components/ai-agents/A
 import AgentLoopInteractive from "@/components/ai-agents/AgentLoopInteractive";
 import ToolPickerInteractive from "@/components/ai-agents/ToolPickerInteractive";
 import MemoryLanesInteractive from "@/components/ai-agents/MemoryLanesInteractive";
+import TraceTimelineInteractive from "@/components/ai-agents/TraceTimelineInteractive";
 import RelatedModules from "@/components/shared/RelatedModules";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
@@ -65,6 +66,7 @@ export default function AiAgentsWalkthroughApp() {
             <li>Log tool inputs/outputs for audit — traces beat screenshots of chat.</li>
             <li>Rate-limit and scope tools per environment (read-only prod).</li>
           </ul>
+          <TraceTimelineInteractive />
         </section>
 
         <section className="step" id="recap">

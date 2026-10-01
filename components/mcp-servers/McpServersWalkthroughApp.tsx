@@ -10,6 +10,7 @@ import DiscoveryInteractive from "@/components/mcp-servers/DiscoveryInteractive"
 import ConfigInteractive from "@/components/mcp-servers/ConfigInteractive";
 import CallFlowInteractive from "@/components/mcp-servers/CallFlowInteractive";
 import AuthInteractive from "@/components/mcp-servers/AuthInteractive";
+import McpHealthInteractive from "@/components/mcp-servers/McpHealthInteractive";
 import WhenMcpInteractive from "@/components/mcp-servers/WhenMcpInteractive";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
@@ -96,6 +97,7 @@ export default function McpServersWalkthroughApp() {
             unavailable namespaces until you fix them.
           </p>
           <AuthInteractive />
+          <McpHealthInteractive />
         </section>
 
         <section className="step" id="when-mcp">

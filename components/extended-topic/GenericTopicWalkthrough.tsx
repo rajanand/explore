@@ -1,14 +1,16 @@
 "use client";
 
 import React from "react";
-import { EXTENDED_TOPIC_CONFIGS } from "@/lib/extended-topics/configs";
+import { getEnrichedTopicConfig } from "@/lib/extended-topics/enrichConfig";
 import GenericTopicSidebar from "@/components/extended-topic/GenericTopicSidebar";
 import SectionQuiz from "@/components/extended-topic/SectionQuiz";
+import SectionScenario from "@/components/extended-topic/SectionScenario";
+import GuideDepthBanner from "@/components/extended-topic/GuideDepthBanner";
 import RelatedModules from "@/components/shared/RelatedModules";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 
 export default function GenericTopicWalkthrough({ slug }: { slug: string }) {
-  const config = EXTENDED_TOPIC_CONFIGS[slug];
+  const config = getEnrichedTopicConfig(slug);
   if (!config) {
     return <p>Topic not found.</p>;
   }
@@ -28,6 +30,7 @@ export default function GenericTopicWalkthrough({ slug }: { slug: string }) {
             <em>{config.heroEmphasis}</em>
           </h1>
           <p className="lede">{config.heroLede}</p>
+          <GuideDepthBanner config={config} />
         </section>
 
         {config.sections.map((section) => (
@@ -42,7 +45,16 @@ export default function GenericTopicWalkthrough({ slug }: { slug: string }) {
                 ))}
               </ul>
             )}
+            {section.scenario && <SectionScenario scenario={section.scenario} />}
+            {section.code && (
+              <pre className="panel mono ext-code">{section.code}</pre>
+            )}
             <SectionQuiz section={section} />
+            {section.takeaway && (
+              <p className="panel step-mechanics ext-takeaway">
+                <strong>Apply it:</strong> {section.takeaway}
+              </p>
+            )}
             {section.id === "recap" && (
               <RelatedModules links={config.related} />
             )}

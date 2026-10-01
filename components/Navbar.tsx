@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { siteConfig } from "@/site.config";
 import ThemeToggle from "./ThemeToggle";
+import LearnMenu from "@/components/nav/LearnMenu";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -23,9 +23,7 @@ export default function Navbar() {
   }, [menuOpen]);
 
   return (
-    <header
-      className={`site-navbar ${isHome ? "site-navbar--home" : ""}`}
-    >
+    <header className={`site-navbar ${isHome ? "site-navbar--home" : ""}`}>
       <div className="site-navbar-inner">
         <Link href="/" className="navbar-brand">
           <span className="navbar-logo" aria-hidden="true">
@@ -44,18 +42,13 @@ export default function Navbar() {
           >
             Home
           </Link>
-          {siteConfig.topics.map((topic) => {
-            const href = `/topics/${topic.slug}`;
-            return (
-              <Link
-                key={topic.slug}
-                href={href}
-                className={`nav-link ${pathname === href ? "active" : ""}`}
-              >
-                {topic.title}
-              </Link>
-            );
-          })}
+          <LearnMenu />
+          <Link
+            href="/#paths"
+            className={`nav-link ${pathname === "/" ? "" : ""}`}
+          >
+            Paths
+          </Link>
         </nav>
 
         <div className="navbar-actions">
@@ -84,19 +77,14 @@ export default function Navbar() {
           >
             Home
           </Link>
-          {siteConfig.topics.map((topic) => {
-            const href = `/topics/${topic.slug}`;
-            return (
-              <Link
-                key={topic.slug}
-                href={href}
-                className={`nav-link ${pathname === href ? "active" : ""}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {topic.title}
-              </Link>
-            );
-          })}
+          <LearnMenu mobile onNavigate={() => setMenuOpen(false)} />
+          <Link
+            href="/#paths"
+            className="nav-link"
+            onClick={() => setMenuOpen(false)}
+          >
+            Learning paths
+          </Link>
         </nav>
       </div>
 

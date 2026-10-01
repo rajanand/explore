@@ -1,0 +1,34 @@
+.sec-walkthrough {
+  --sec-accent: #b91c1c;
+  --walk-amber: var(--sec-accent);
+}
+
+.sec-ticket {
+  font-size: 12px;
+  white-space: pre-wrap;
+  line-height: 1.5;
+}
+
+.sec-verdict {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.sec-verdict.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.sec-verdict.bad {
+  border-left: 3px solid var(--sec-accent);
+}
+
+.sec-chunks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

@@ -1,0 +1,46 @@
+.ft-walkthrough {
+  --ft-accent: #9333ea;
+  --walk-amber: var(--ft-accent);
+}
+
+.ft-verdict {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ft-verdict.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.ft-verdict.warn {
+  border-left: 3px solid var(--walk-amber);
+}
+
+.ft-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ft-check {
+  width: 100%;
+  text-align: left;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  cursor: pointer;
+}
+
+.ft-check.on {
+  border-color: var(--ft-accent);
+}
+
+.ft-score {
+  margin-top: 12px;
+  font-size: 13px;
+}

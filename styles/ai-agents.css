@@ -83,3 +83,32 @@
   line-height: 1.65;
   color: var(--ink-dim);
 }
+
+.aa-trace {
+  margin-top: 16px;
+}
+
+.aa-trace-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.aa-trace-step {
+  padding: 8px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.aa-trace-step.active {
+  border-color: var(--aa-accent);
+}
+
+.aa-trace-step.done {
+  opacity: 0.85;
+}

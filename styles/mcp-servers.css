@@ -191,6 +191,15 @@
   color: var(--ink-dim);
 }
 
+.mcp-health {
+  margin-top: 16px;
+}
+
+.mcp-health-fix {
+  margin: 12px 0 0;
+  font-size: 14px;
+}
+
 /* reuse git callout spacing name in config section */
 .mcp-walkthrough .git-callout {
   border-left-color: var(--mcp-teal);

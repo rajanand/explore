@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import HybridSearchWalkthroughApp from "@/components/hybrid-search/HybridSearchWalkthroughApp";
 
-export default function Page() {
-  return <GenericTopicWalkthrough slug="hybrid-search" />;
+export default function HybridSearchPage() {
+  return <HybridSearchWalkthroughApp />;
 }

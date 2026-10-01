@@ -1,5 +1,5 @@
-﻿import GenericTopicWalkthrough from "@/components/extended-topic/GenericTopicWalkthrough";
+﻿import FineTuningWalkthroughApp from "@/components/fine-tuning/FineTuningWalkthroughApp";
 
-export default function Page() {
-  return <GenericTopicWalkthrough slug="fine-tuning" />;
+export default function FineTuningPage() {
+  return <FineTuningWalkthroughApp />;
 }

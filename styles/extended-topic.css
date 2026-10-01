@@ -29,3 +29,76 @@
 .ext-feedback.warn {
   border-left: 3px solid var(--walk-amber);
 }
+
+.ext-guide-meta {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ext-outcome {
+  margin: 0 0 10px;
+}
+
+.ext-prereq {
+  margin: 0 0 10px;
+}
+
+.ext-guide-note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+.ext-scenario {
+  margin-top: 16px;
+}
+
+.ext-scenario-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.ext-scenario-context {
+  margin: 0 0 12px;
+  color: var(--ink-dim);
+  font-size: 14px;
+}
+
+.ext-scenario-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ext-scenario-step {
+  padding: 8px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.ext-scenario-step.active {
+  border-color: var(--walk-amber);
+}
+
+.ext-scenario-detail {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.ext-code {
+  margin-top: 14px;
+  font-size: 12px;
+  white-space: pre-wrap;
+}
+
+.ext-takeaway {
+  margin-top: 14px;
+  font-size: 14px;
+}

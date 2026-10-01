@@ -1,3 +1,6 @@
-﻿import TopicWalkthroughLayout from "@/components/extended-topic/TopicWalkthroughLayout";
+﻿import "@/styles/walkthrough.css";
+import "@/styles/llm-security.css";
 
-export default TopicWalkthroughLayout;
+export default function LlmSecurityLayout({ children }: { children: React.ReactNode }) {
+  return <div className="walkthrough-root sec-walkthrough">{children}</div>;
+}
