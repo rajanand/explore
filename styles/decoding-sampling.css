@@ -1,0 +1,4 @@
+.dec-walkthrough {
+  --dec-accent: #7c3aed;
+  --walk-amber: var(--dec-accent);
+}

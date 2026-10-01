@@ -1,0 +1,4 @@
+.nn-walkthrough {
+  --nn-accent: #2563eb;
+  --walk-amber: var(--nn-accent);
+}

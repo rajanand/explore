@@ -1,0 +1,20 @@
+.tok-walkthrough {
+  --tok-accent: #0f766e;
+  --walk-amber: var(--tok-accent);
+}
+
+.tok-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+.tok-chip {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--panel);
+  border: 1px solid var(--line-soft);
+  font-family: var(--font-mono, monospace);
+}
