@@ -1,0 +1,82 @@
+.pc-walkthrough {
+  --pc-accent: #4f46e5;
+  --walk-amber: var(--pc-accent);
+}
+
+.pc-budget {
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.pc-budget-bar {
+  height: 10px;
+  background: var(--line-soft);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.pc-budget-fill {
+  height: 100%;
+  background: var(--pc-accent);
+  transition: width 0.2s;
+}
+
+.pc-budget-fill.over {
+  background: #be123c;
+}
+
+.pc-ctx-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pc-ctx-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  cursor: pointer;
+}
+
+.pc-ctx-item.on {
+  border-color: var(--pc-accent);
+}
+
+.pc-out {
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.pc-valid {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.pc-valid.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.pc-valid.warn {
+  border-left: 3px solid var(--pc-accent);
+}
+
+.pc-answer {
+  margin: 12px 0;
+  color: var(--pc-accent);
+  font-size: 16px;
+}
+
+.pc-checklist {
+  max-width: 52ch;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}

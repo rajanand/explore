@@ -1,0 +1,66 @@
+.gr-walkthrough {
+  --gr-accent: #0891b2;
+  --walk-amber: var(--gr-accent);
+}
+
+.gr-graph-nodes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.gr-node {
+  padding: 10px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--panel);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.gr-node.active {
+  border-color: var(--gr-accent);
+}
+
+.gr-node.expanded {
+  background: color-mix(in srgb, var(--gr-accent) 10%, var(--panel));
+}
+
+.gr-edges {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin: 0;
+  padding-left: 16px;
+}
+
+.gr-path {
+  color: var(--gr-accent);
+  margin-top: 12px;
+}
+
+.gr-fusion-badges {
+  display: flex;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.gr-badge {
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: var(--font-jetbrains), monospace;
+  border: 1px solid var(--line-soft);
+  opacity: 0.45;
+}
+
+.gr-badge.on {
+  opacity: 1;
+  border-color: var(--gr-accent);
+  background: color-mix(in srgb, var(--gr-accent) 12%, transparent);
+}

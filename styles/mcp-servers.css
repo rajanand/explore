@@ -1,0 +1,198 @@
+/* MCP servers module — teal / slate */
+
+.mcp-walkthrough {
+  --mcp-teal: #0d9488;
+  --mcp-teal-soft: color-mix(in srgb, var(--mcp-teal) 12%, var(--walk-panel));
+  --walk-amber: var(--mcp-teal);
+  --walk-teal: #2563a8;
+}
+
+[data-theme="dark"] .mcp-walkthrough {
+  --mcp-teal: #2dd4bf;
+}
+
+.mcp-bullet-list {
+  margin: 0 0 20px;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink-dim);
+  max-width: 58ch;
+}
+
+.mcp-arch-diagram {
+  text-align: center;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.mcp-arch-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.mcp-arch-row--split {
+  flex-wrap: wrap;
+}
+
+.mcp-arch-box {
+  padding: 12px 20px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--panel);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.mcp-arch-box.active {
+  border-color: var(--mcp-teal);
+  background: var(--mcp-teal-soft);
+}
+
+.mcp-arch-box--server {
+  border-color: color-mix(in srgb, var(--mcp-teal) 35%, var(--line-soft));
+}
+
+.mcp-arch-arrow {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin: 8px 0;
+}
+
+.mcp-arch-foot {
+  margin: 16px 0 0;
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+.mcp-role-detail,
+.mcp-role-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.mcp-pre {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.mcp-config {
+  margin-top: 12px;
+}
+
+.mcp-callout {
+  margin-top: 14px;
+}
+
+.mcp-tool-card {
+  margin-top: 16px;
+}
+
+.mcp-tool-name {
+  color: var(--mcp-teal);
+  margin: 0 0 8px;
+}
+
+.mcp-schema-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  margin: 12px 0 6px;
+}
+
+.mcp-flow-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.mcp-flow-step {
+  flex: 1 1 100px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.mcp-flow-step.active {
+  border-color: var(--mcp-teal);
+  background: var(--mcp-teal-soft);
+}
+
+.mcp-flow-step.done {
+  border-color: color-mix(in srgb, var(--mcp-teal) 50%, var(--line-soft));
+}
+
+.mcp-payload {
+  margin-top: 12px;
+  padding: 12px;
+  background: var(--bg);
+  border-radius: 8px;
+}
+
+.mcp-auth-panel--needsAuth {
+  border-left: 3px solid var(--walk-amber);
+}
+
+.mcp-auth-panel--ok {
+  border-left: 3px solid var(--mcp-teal);
+}
+
+.mcp-auth-panel--error {
+  border-left: 3px solid #c45c3a;
+}
+
+.mcp-chat-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin: 0 0 8px;
+}
+
+.mcp-verdict {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.mcp-verdict.on {
+  border-left: 3px solid var(--mcp-teal);
+  background: var(--mcp-teal-soft);
+}
+
+.mcp-verdict.off {
+  border-left: 3px solid var(--walk-amber);
+  background: color-mix(in srgb, var(--walk-amber) 10%, transparent);
+}
+
+.mcp-recap-list {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.mcp-credit {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}
+
+/* reuse git callout spacing name in config section */
+.mcp-walkthrough .git-callout {
+  border-left-color: var(--mcp-teal);
+  background: var(--mcp-teal-soft);
+}

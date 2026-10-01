@@ -1,0 +1,85 @@
+.aa-walkthrough {
+  --aa-accent: #ea580c;
+  --walk-amber: var(--aa-accent);
+}
+
+.aa-loop {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.aa-loop-step {
+  padding: 10px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  cursor: pointer;
+}
+
+.aa-loop-step.active {
+  border-color: var(--aa-accent);
+}
+
+.aa-step-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.aa-verdict {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.aa-verdict.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.aa-verdict.warn {
+  border-left: 3px solid var(--aa-accent);
+}
+
+.aa-budget {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+.aa-memory-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.aa-memory-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.aa-memory-item.in {
+  border-color: var(--aa-accent);
+}
+
+.aa-memory-item.locked {
+  opacity: 0.85;
+  cursor: default;
+}
+
+.aa-list {
+  padding-left: 20px;
+  max-width: 58ch;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}

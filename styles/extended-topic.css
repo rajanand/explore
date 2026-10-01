@@ -1,0 +1,31 @@
+.ext-walkthrough {
+  --ext-accent: #64748b;
+  --walk-amber: #c45c3a;
+}
+
+.ext-list {
+  margin: 0 0 16px;
+  padding-left: 20px;
+  max-width: 58ch;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}
+
+.ext-quiz {
+  margin-top: 16px;
+}
+
+.ext-feedback {
+  margin-top: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ext-feedback.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.ext-feedback.warn {
+  border-left: 3px solid var(--walk-amber);
+}

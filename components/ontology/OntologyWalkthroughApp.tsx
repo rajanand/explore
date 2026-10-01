@@ -122,7 +122,9 @@ export default function OntologyWalkthroughApp() {
 
         <footer>
           Build the ontology (structure) → tag documents for RAG (text) → let
-          the LLM reason over both. Each layer solves a different problem.
+          the LLM reason over both. Next:{" "}
+          <a href="/topics/graph-rag">Graph RAG &amp; hybrid retrieval</a> and{" "}
+          <a href="/topics/rag">RAG pipeline</a>.
         </footer>
       </main>
     </div>

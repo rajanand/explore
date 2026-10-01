@@ -634,6 +634,12 @@
   border-top: 1px solid var(--walk-line-soft);
   border-bottom: 1px solid var(--walk-line-soft);
   background: color-mix(in srgb, var(--walk-panel) 40%, var(--walk-bg));
+  display: flex;
+  flex-direction: column;
+}
+
+.home-path-inner--secondary {
+  border-top: 1px solid var(--walk-line-soft);
 }
 
 .home-path-inner {

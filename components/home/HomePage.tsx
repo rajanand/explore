@@ -15,6 +15,22 @@ const MODULE_META: Record<
   ontology: { order: 4, label: "Knowledge", duration: "~20 min" },
   "git-internals": { order: 5, label: "Version control", duration: "~25 min" },
   "cursor-agents": { order: 6, label: "Agent toolkit", duration: "~15 min" },
+  "mcp-servers": { order: 7, label: "Integrations", duration: "~15 min" },
+  embeddings: { order: 8, label: "Embeddings", duration: "~20 min" },
+  "graph-rag": { order: 9, label: "Graph RAG", duration: "~20 min" },
+  "ai-agents": { order: 10, label: "Agents", duration: "~20 min" },
+  "llm-evals": { order: 11, label: "Evals", duration: "~20 min" },
+  "prompt-context": { order: 12, label: "Context", duration: "~20 min" },
+  "fine-tuning": { order: 13, label: "Adaptation", duration: "~15 min" },
+  "vector-databases": { order: 14, label: "Storage", duration: "~15 min" },
+  "llm-security": { order: 15, label: "Security", duration: "~15 min" },
+  "ai-observability": { order: 16, label: "Ops", duration: "~15 min" },
+  "streaming-apis": { order: 17, label: "APIs", duration: "~15 min" },
+  "knowledge-graphs": { order: 18, label: "Graphs", duration: "~15 min" },
+  "tool-calling": { order: 19, label: "Tools", duration: "~15 min" },
+  "hybrid-search": { order: 20, label: "Search", duration: "~15 min" },
+  "ai-governance": { order: 21, label: "Governance", duration: "~15 min" },
+  "context-windows": { order: 22, label: "Limits", duration: "~15 min" },
 };
 
 const PATH_STEPS = [
@@ -22,6 +38,14 @@ const PATH_STEPS = [
   "Transformer internals",
   "RAG pipelines",
   "Ontologies & graphs",
+];
+
+const PATH_STEPS_PRODUCTION = [
+  "Embeddings & search",
+  "Graph RAG",
+  "AI agents",
+  "Evals & guardrails",
+  "Prompt & context",
 ];
 
 export default function HomePage() {
@@ -49,9 +73,9 @@ export default function HomePage() {
             </h1>
 
             <p className="home-lede">
-              {siteConfig.description} Walk through LLMs, transformers, RAG, and
-              ontologies with visuals you can click, toggle, and reason about —
-              not slides.
+              {siteConfig.description} Walk foundations (LLMs, transformers, RAG,
+              ontologies) or the production track (embeddings, graph RAG, agents,
+              evals, context) — all interactive, not slides.
             </p>
 
             <div className="home-hero-actions">
@@ -98,15 +122,29 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="home-path" aria-label="Suggested learning path">
+      <section className="home-path" aria-label="Suggested learning paths">
         <div className="home-path-inner">
-          <p className="home-path-label">Suggested path</p>
+          <p className="home-path-label">Foundations</p>
           <ol className="home-path-steps">
             {PATH_STEPS.map((step, i) => (
               <li key={step}>
                 <span className="home-path-num">{i + 1}</span>
                 <span>{step}</span>
                 {i < PATH_STEPS.length - 1 && (
+                  <span className="home-path-arrow" aria-hidden="true">→</span>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div className="home-path-inner home-path-inner--secondary">
+          <p className="home-path-label">Ship AI features</p>
+          <ol className="home-path-steps">
+            {PATH_STEPS_PRODUCTION.map((step, i) => (
+              <li key={step}>
+                <span className="home-path-num">{i + 1}</span>
+                <span>{step}</span>
+                {i < PATH_STEPS_PRODUCTION.length - 1 && (
                   <span className="home-path-arrow" aria-hidden="true">→</span>
                 )}
               </li>

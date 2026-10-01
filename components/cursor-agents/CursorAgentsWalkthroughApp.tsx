@@ -109,8 +109,9 @@ export default function CursorAgentsWalkthroughApp() {
           <p className="note">
             Next steps in Cursor: add a project skill under{" "}
             <span className="mono">.cursor/skills/</span>, a team hook in{" "}
-            <span className="mono">.cursor/hooks.json</span>, and try explicit subagent requests
-            (“use the explore agent to map our API routes”).
+            <span className="mono">.cursor/hooks.json</span>, connect an{" "}
+            <a href="/topics/mcp-servers">MCP server</a> for external tools, and try explicit
+            subagent requests (“use the explore agent to map our API routes”).
           </p>
           <p className="ca-credit">
             Product details evolve — check{" "}

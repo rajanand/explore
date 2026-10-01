@@ -1,0 +1,51 @@
+.ev-walkthrough {
+  --ev-accent: #be123c;
+  --walk-amber: var(--ev-accent);
+}
+
+.ev-table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.ev-table th,
+.ev-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--line-soft);
+  text-align: left;
+}
+
+.ev-pass {
+  color: var(--walk-teal);
+}
+
+.ev-fail {
+  color: var(--ev-accent);
+}
+
+.ev-bars {
+  margin-top: 16px;
+}
+
+.ev-verdict {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.ev-verdict.ok {
+  border-left: 3px solid var(--walk-teal);
+}
+
+.ev-verdict.bad {
+  border-left: 3px solid var(--ev-accent);
+}
+
+.ev-list {
+  padding-left: 20px;
+  max-width: 58ch;
+  line-height: 1.65;
+  color: var(--ink-dim);
+}

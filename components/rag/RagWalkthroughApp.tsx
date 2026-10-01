@@ -112,7 +112,10 @@ export default function RagWalkthroughApp() {
 
         <footer>
           Pair with Introduction to LLMs for the model layer and Transformer
-          walkthrough for embeddings and attention underneath vector search.
+          walkthrough for attention. Go deeper on retrieval with{" "}
+          <a href="/topics/embeddings">Embeddings &amp; vector search</a>,{" "}
+          <a href="/topics/graph-rag">Graph RAG</a>, and{" "}
+          <a href="/topics/llm-evals">Evals &amp; guardrails</a>.
         </footer>
       </main>
     </div>
