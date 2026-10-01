@@ -5,7 +5,8 @@ const STEPS = [
   { id: "why", num: "01", label: "Why tokens" },
   { id: "bpe", num: "02", label: "BPE merges" },
   { id: "count", num: "03", label: "Count & cost" },
-  { id: "recap", num: "04", label: "Recap" },
+  { id: "limits", num: "04", label: "Limits" },
+  { id: "recap", num: "05", label: "Recap" },
 ] as const;
 
 export const TOKENIZATION_SECTION_IDS = STEPS.map((s) => s.id);

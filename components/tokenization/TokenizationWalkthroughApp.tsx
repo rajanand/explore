@@ -51,8 +51,17 @@ export default function TokenizationWalkthroughApp() {
           <TokenCountInteractive />
         </section>
 
-        <section className="step" id="recap">
+        <section className="step" id="limits">
           <p className="eyebrow">Part 2 · Step 04</p>
+          <h2 className="title">Limits</h2>
+          <p className="lede">
+            Tokenizers differ by model family — always use the tokenizer tied to the model you call.
+            Mock counts here teach intuition; ship features with the official token counter API.
+          </p>
+        </section>
+
+        <section className="step" id="recap">
+          <p className="eyebrow">Part 2 · Step 05</p>
           <h2 className="title">Recap</h2>
           <RelatedModules
             links={[

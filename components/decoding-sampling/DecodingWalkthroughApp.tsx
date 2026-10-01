@@ -51,8 +51,17 @@ export default function DecodingWalkthroughApp() {
           <StopStrategyInteractive />
         </section>
 
-        <section className="step" id="recap">
+        <section className="step" id="limits">
           <p className="eyebrow">Part 2 · Step 04</p>
+          <h2 className="title">Limits</h2>
+          <p className="lede">
+            Structured outputs often need constrained decoding or tool schemas — temperature alone
+            does not guarantee valid JSON. Match API features to your contract.
+          </p>
+        </section>
+
+        <section className="step" id="recap">
+          <p className="eyebrow">Part 2 · Step 05</p>
           <h2 className="title">Recap</h2>
           <RelatedModules
             links={[

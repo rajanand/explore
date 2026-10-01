@@ -4,15 +4,10 @@ Canonical registry: [`lib/ai-roadmap/modules.ts`](../lib/ai-roadmap/modules.ts).
 
 ## Build pipeline
 
-1. **Hand-crafted** (deepest): `tokenization`, `decoding-sampling`, `neural-networks-llm`
-2. **Config-driven workshops**: remaining slugs use [`components/workshop/WorkshopApp.tsx`](../components/workshop/WorkshopApp.tsx) + generated [`lib/ai-roadmap/workshop-configs/bundle.ts`](../lib/ai-roadmap/workshop-configs/bundle.ts)
-3. Regenerate configs: `node scripts/build-workshop-configs.mjs`
-4. Regenerate routes: `node scripts/generate-roadmap-pages.mjs`
-5. Sync catalog: `node scripts/sync-roadmap-site-config.mjs` (once per new slug batch)
-
-## Depth upgrades
-
-Replace generated labs module-by-module with custom interactives (same pattern as hybrid-search) when a topic needs more than template labs. Edit `bundle.ts` or add `lib/ai-roadmap/workshop-configs/overrides/{slug}.ts` (future).
+1. **Bespoke UI** (3): `tokenization`, `decoding-sampling`, `neural-networks-llm` — dedicated components under `components/<slug>/`.
+2. **Deep workshops** (47): [`lib/ai-roadmap/deep-workshops/sections-part*.ts`](../lib/ai-roadmap/deep-workshops/) + [`WorkshopApp`](../components/workshop/WorkshopApp.tsx).
+3. Edit section files to deepen a topic; run `npm run build`.
+4. Routes: `node scripts/generate-roadmap-pages.mjs` (when adding slugs to `modules.ts`).
 
 ## Waves
 

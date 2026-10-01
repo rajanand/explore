@@ -5,7 +5,8 @@ const STEPS = [
   { id: "logits", num: "01", label: "From logits" },
   { id: "profiles", num: "02", label: "Profiles" },
   { id: "stop", num: "03", label: "Stops" },
-  { id: "recap", num: "04", label: "Recap" },
+  { id: "limits", num: "04", label: "Limits" },
+  { id: "recap", num: "05", label: "Recap" },
 ] as const;
 
 export const DECODING_SECTION_IDS = STEPS.map((s) => s.id);

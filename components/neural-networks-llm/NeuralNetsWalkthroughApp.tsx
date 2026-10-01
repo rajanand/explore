@@ -51,8 +51,17 @@ export default function NeuralNetsWalkthroughApp() {
           <LogitsPickerInteractive />
         </section>
 
-        <section className="step" id="recap">
+        <section className="step" id="limits">
           <p className="eyebrow">Part 2 · Step 04</p>
+          <h2 className="title">Limits</h2>
+          <p className="lede">
+            This module simplifies to one next-token step. Real models run billions of parameters
+            across layers — you still do not need to hand-compute weights to ship RAG and evals.
+          </p>
+        </section>
+
+        <section className="step" id="recap">
+          <p className="eyebrow">Part 2 · Step 05</p>
           <h2 className="title">Recap</h2>
           <RelatedModules
             links={[

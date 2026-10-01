@@ -5,7 +5,8 @@ const STEPS = [
   { id: "stack", num: "01", label: "Stack" },
   { id: "forward", num: "02", label: "Forward pass" },
   { id: "pick", num: "03", label: "Next token" },
-  { id: "recap", num: "04", label: "Recap" },
+  { id: "limits", num: "04", label: "Limits" },
+  { id: "recap", num: "05", label: "Recap" },
 ] as const;
 
 export const NEURAL_NETS_SECTION_IDS = STEPS.map((s) => s.id);
