@@ -14,6 +14,7 @@ const MODULE_META: Record<
   rag: { order: 3, label: "Retrieval", duration: "~20 min" },
   ontology: { order: 4, label: "Knowledge", duration: "~20 min" },
   "git-internals": { order: 5, label: "Version control", duration: "~25 min" },
+  "cursor-agents": { order: 6, label: "Agent toolkit", duration: "~15 min" },
 };
 
 const PATH_STEPS = [

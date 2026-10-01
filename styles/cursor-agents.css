@@ -1,0 +1,250 @@
+/* Cursor agents module — cool slate + violet accent */
+
+.ca-walkthrough {
+  --ca-violet: #6d5bd0;
+  --ca-violet-soft: color-mix(in srgb, var(--ca-violet) 12%, var(--walk-panel));
+  --walk-amber: var(--ca-violet);
+  --walk-teal: #3d8b7a;
+}
+
+[data-theme="dark"] .ca-walkthrough {
+  --ca-violet: #a78bfa;
+}
+
+.ca-hero-panel {
+  font-size: 14px;
+  color: var(--ink-dim);
+}
+
+.ca-loop-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.ca-loop-node {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  background: var(--panel);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  color: var(--ink-dim);
+  transition: border-color 0.2s, background 0.2s;
+  flex: 1 1 140px;
+  min-width: 120px;
+}
+
+.ca-loop-node.active {
+  border-color: var(--ca-violet);
+  background: var(--ca-violet-soft);
+  color: var(--ink);
+}
+
+.ca-loop-node.done {
+  border-color: var(--walk-teal);
+}
+
+.ca-loop-num {
+  font-size: 11px;
+  color: var(--ca-violet);
+}
+
+.ca-loop-label {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ca-loop-detail-title {
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.ca-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 860px) {
+  .ca-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ca-file-path {
+  font-size: 12px;
+  color: var(--ink-dim);
+  margin: 0 0 10px;
+}
+
+.ca-pre {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+
+.ca-chat-label {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  margin: 0 0 8px;
+}
+
+.ca-user-bubble {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--bg);
+  border: 1px solid var(--line-soft);
+  margin: 0 0 12px;
+  font-size: 15px;
+}
+
+.ca-skill-verdict {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.ca-skill-verdict.on {
+  border-left: 3px solid var(--walk-teal);
+  background: color-mix(in srgb, var(--walk-teal) 10%, transparent);
+}
+
+.ca-skill-verdict.off {
+  border-left: 3px solid var(--ca-violet);
+  background: var(--ca-violet-soft);
+}
+
+.ca-hooks-intro {
+  margin-bottom: 16px;
+}
+
+.ca-hooks-json {
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.ca-event-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ca-event-btn {
+  font-size: 11px !important;
+  padding: 8px 10px !important;
+}
+
+.ca-event-btn--ok {
+  border-color: var(--walk-teal) !important;
+}
+
+.ca-event-btn--bad {
+  opacity: 0.7;
+}
+
+.ca-agent-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.ca-agent-card {
+  padding: 14px;
+}
+
+.ca-agent-id {
+  color: var(--ca-violet);
+  font-size: 13px;
+  margin: 0 0 8px;
+}
+
+.ca-stack {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px dashed var(--line);
+}
+
+.ca-stack-layer {
+  padding: 14px 16px;
+  border: 1px solid var(--line-soft);
+  border-radius: 8px;
+  background: var(--panel);
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.ca-stack-layer.active {
+  border-color: var(--ca-violet);
+  transform: translateX(8px);
+}
+
+.ca-stack--run .ca-stack-layer {
+  animation: ca-pulse 0.5s ease calc(var(--i) * 0.15s) both;
+}
+
+@keyframes ca-pulse {
+  0%,
+  100% {
+    border-color: var(--line-soft);
+  }
+  50% {
+    border-color: var(--ca-violet);
+    background: var(--ca-violet-soft);
+  }
+}
+
+.ca-stack-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.ca-stack-flow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: var(--ink-dim);
+  writing-mode: vertical-rl;
+  opacity: 0.6;
+}
+
+@media (max-width: 640px) {
+  .ca-stack-flow {
+    display: none;
+  }
+}
+
+.ca-recap-list {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.ca-credit {
+  margin-top: 28px;
+  font-size: 13px;
+  color: var(--ink-dim);
+}

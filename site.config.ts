@@ -51,5 +51,12 @@ export const siteConfig: SiteConfig = {
         "Blobs, trees, commits, and refs — a hands-on tour of what Git stores under the hood.",
       category: "Software Engineering",
     },
+    {
+      slug: "cursor-agents",
+      title: "Cursor Agents",
+      description:
+        "Skills, hooks, the agent loop, and subagents — how to extend and delegate AI coding workflows.",
+      category: "Developer Tools",
+    },
   ],
 };
